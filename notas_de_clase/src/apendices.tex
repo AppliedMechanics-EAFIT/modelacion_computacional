@@ -1,0 +1,96 @@
+%Chapter "Introduction"
+%
+\chapter*{Apendice}
+
+\setcounter{algocf}{0}
+
+\section*{Estructuras básicas de control de flujo}
+
+\begin{algorithm}[H]
+ \SetAlgoLined
+ \KwData{Input Data}
+ \KwResult{Output Data}
+ Instr-1\;
+ Instr-2\;
+ ...\;
+ Instr-n\;
+\caption{Estructura secuencial}
+\label{seqstru}
+\end{algorithm}
+
+\begin{algorithm}[H]
+ \SetAlgoLined
+ \If{condition}{
+Instr-1\;
+Instr-2\;
+...\;
+Instr-n\;
+}
+\caption{Condicional simple}
+\label{simpleif}
+%
+\end{algorithm}
+
+\begin{algorithm}[H]
+ \SetAlgoLined
+\eIf{condition}{
+Instr-1\;
+Instr-2\;
+...\;
+Instr-n\;
+}{
+Instr-1\;
+Instr-2\;
+...\;
+Instr-n\;
+}
+\caption{Condicional doble}
+\label{doubleif}
+%
+\end{algorithm}
+
+\newpage
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\While{condition}{
+Instr-1\;
+Instr-2\;
+...\;
+Instr-n\;
+}
+\caption{Ciclo Hacer Mientras}
+\label{while}
+%
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\Repeat{condition}{
+Instr-1\;
+Instr-2\;
+...\;
+Instr-n\;
+}
+\caption{Ciclo Hacer Hasta}
+\label{until}
+%
+\end{algorithm}
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\For{$j\leftarrow V_i$ \KwTo $V_f$}{\nllabel{forins}
+Instr-1\;
+Instr-2\;
+...\;
+Instr-n\;
+}
+\caption{Ciclo For}
+\label{fornext}
+%
+\end{algorithm}
+
+
+
+

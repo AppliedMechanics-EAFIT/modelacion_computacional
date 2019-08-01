@@ -1,0 +1,282 @@
+\graphicspath{{img/algor/}}
+\chapter{Codigos}
+
+
+\subsection{Detección de las raices de una función en un intervalo dado}
+
+\begin{listing}[H]
+    \begin{minted}[mathescape,
+               gobble=8,
+               frame=lines,
+               framesep=2mm]{python}
+        from numpy import zeros
+        
+        def bracketing(fun, a, b, N):
+            msg = "Maximum number of iterations reached."
+            dx = (b - a)/(N - 1)
+            iroot = 0
+            x2 = a
+            xR = zeros(N, float)
+            for i in range(0, N):
+                x1 = x2
+                x2 = x1 + dx
+                if (fun(x1) * fun(x2)) < 0:
+                    msg = "A change of sign was found."
+                    iroot = iroot + 1
+                    xR[i] = x1
+            return xR, msg
+
+        # Function call
+        a = -10.0
+        b = 10.0
+        N = 21
+        fun = lambda x: x**3 + 4*x**2 - 10
+        xR, msg = bracketing(fun, a, b, N)
+        print(msg)
+        print(xR)
+    \end{minted}
+    \caption{Método de búsquedas incrementales en Python.}
+    \label{lst:bracketing}
+\end{listing}
+
+
+
+
+\subsection{Método de bisección para la localización de raices en un intervalo dado}
+
+\begin{listing}[H]
+    \begin{minted}[mathescape,
+               gobble=8,
+               frame=lines,
+               framesep=2mm]{python}
+        def bisection(fun, a, b, xtol=1e-6, ftol=1e-12, verbose=False):
+            """
+            Use bisection method to estimate the root of a real function
+            """
+            if fun(a) * fun(b) > 0:
+                c = None
+                msg = "The function should change sign in the interval."
+            else:
+                nmax = int(ceil(log2((b - a)/xtol)))
+                for cont in range(nmax):
+                    c = 0.5*(a + b)
+                    if verbose:
+                        print("n: {}, x: {}".format(cont, c))
+                    if abs(fun(c)) < ftol:
+                        msg = "Root found with desired accuracy."
+                        break
+                    elif fun(a) * fun(c) < 0:
+                        b = c
+                    elif fun(b) * fun(c) < 0:
+                        a = c
+                    msg = "Maximum number of iterations reached."
+            return c, msg
+        
+        x, msg = bisection(lambda x: x**3 + 4*x**2 -10, -2, 2, xtol=1e-4,
+                           verbose=True)
+        print(msg)
+        print(x)
+    \end{minted}
+    \caption{Método de bisección en Python.}
+    \label{lst:bisection}
+\end{listing}
+
+
+\subsection{Método de Newton-Raphson para la localización de raices en un intervalo dado}
+
+\begin{listing}[H]
+    \begin{minted}[mathescape,
+               gobble=8,
+               frame=lines,
+               framesep=2mm]{python}
+        def newton(fun, grad, x, niter=50, ftol=1e-8, verbose=False):
+            """
+            Use Newton method to estimate the root of a real function
+            """
+            msg = "Maximum number of iterations reached."
+            for cont in range(niter):
+                if abs(grad(x)) < ftol:
+                    x = None
+                    msg = "Derivative near to zero."
+                    break
+                if verbose:
+                    print("n: {}, x: {}".format(cont, x))
+                x = x - fun(x)/grad(x)
+                if abs(fun(x)) < ftol:
+                    msg = "Root found with desired accuracy."
+                    break
+            return x, msg
+        
+        func = lambda x:x**3 + 4*x**2 - 10
+        deriv = lambda x: 3*x**2 + 8*x
+        result = newton(func, deriv, 2, verbose=True)
+        print(result)
+    \end{minted}
+    \caption{Método de Newton-Rapshon en Python.}
+    \label{lst:newton-raphson}
+\end{listing}
+
+
+\subsection{Integración numérica: Regla del trapecio}
+
+\begin{minted}[mathescape,
+           gobble=4,
+           frame=lines,
+           framesep=2mm]{python}
+    import numpy as np
+    from sympy import symbols, integrate
+
+
+    def trapz(fun, x0, x1, n):
+    """Trapezoidal rule for integration
+    
+    Parameters
+    ----------
+    fun : callable
+         Function to integrate.
+    x0 : float
+         Initial point for the integration interval.
+    x1 : float
+         End point for the integration interval.
+    n : int
+         Number of points to take in the interval.
+    
+    Returns
+    -------
+    inte : float
+         Approximation of the integral
+    
+    """
+    x = np.linspace(x0, x1, n)
+    y = fun(x)
+    dx = x[1] - x[0]
+    inte = 0.5*dx*(y[0] + y[-1])
+    for cont in range(1, n - 1):
+    inte = inte + dx*y[cont]
+    return inte
+
+
+    fun = lambda x: x**3 + 4*x**2 - 10
+    for cont in range(2, 11):
+        numeric_int = trapz(fun, -1, 1, cont)
+        print("Approximation for {} subdivisions: {:.6f}".format(cont - 1,
+               numeric_int))
+
+    x  = symbols('x')
+    analytic_int = integrate(fun(x) , (x , -1 , 1))
+    print("Analytic integral: {:.6f}".format(float(analytic_int)))
+\end{minted}
+
+\subsection{Integración numériva: Cuadratura Gaussiana}
+
+\begin{minted}[mathescape,
+	gobble=4,
+	frame=lines,
+	framesep=2mm]{python} 
+    import numpy as np
+    from scipy.special import roots_legendre # Gauss points and weights
+    from sympy import symbols, integrate
+    
+    
+    def gauss1d(fun, x0, x1, n):
+    """Gauss quadrature in 1D
+    
+    Parameters
+    ----------
+    fun : callable
+        Function to integrate.
+    x0 : float
+        Initial point for the integration interval.
+    x1 : float
+        End point for the integration interval.
+    n : int
+        Number of points to take in the interval.
+    
+    Returns
+    -------
+    inte : float
+         Approximation of the integral
+    
+    """
+    xi, wi = roots_legendre(n)
+    inte = 0
+    h = 0.5 * (x1 - x0)
+    xm = 0.5 * (x0 + x1)
+    for cont in range(n):
+        inte = inte + h * fun(h * xi[cont] + xm) * wi[cont]
+    return inte
+
+    fun = lambda x: x**3 + 4*x**2 - 10
+    gauss_inte = gauss1d(fun, -1, 1, 4)
+    x  = symbols('x')
+    analytic_inte = integrate(fun(x) , (x , -1 , 1))
+    print("Analytic integral: {:.6f}".format(float(analytic_inte)))
+    print("Gauss quadrature: {:.6f}".format(gauss_inte))
+\end{minted}
+
+
+\subsection{Integración en un 2 dimensiones}
+
+\begin{mdframed}[linecolor=black,
+	topline=true,
+	bottomline=true,
+	leftline=false,
+	rightline=false]
+	\begin{minted}[mathescape,
+	gobble=8,
+	framesep=2mm]{python}
+	import numpy as np
+	from scipy.special import roots_legendre # Gauss points and weights
+	
+	
+	def gauss2d(fun, x0, x1, y0, y1, nx, ny):
+	"""Gauss quadrature for a rectangle in 2D
+	
+	Parameters
+	----------
+	fun : callable
+	Function to integrate.
+	x0 : float
+	Initial point for the integration interval in x.
+	x1 : float
+	End point for the integration interval in x.
+	y0 : float
+	Initial point for the integration interval in y.
+	y1 : float
+	End point for the integration interval in y.
+	nx : int
+	Number of points to take in the interval in x.
+	ny : int
+	Number of points to take in the interval in y.
+	
+	Returns
+	-------
+	inte : float
+	Approximation of the integral
+	
+	"""
+	xi, wi = roots_legendre(nx)
+	yj, wj = roots_legendre(ny)
+	inte = 0
+	hx = 0.5 * (x1 - x0)
+	hy = 0.5 * (y1 - y0)
+	xm = 0.5 * (x0 + x1)
+	ym = 0.5 * (y0 + y1)
+	for cont_x in range(nx):
+	for cont_y in range(ny):
+	f = fun(hx * xi[cont_x] + xm, hy * yj[cont_y] + ym)
+	inte = inte + hx* hy * f * wi[cont_x] * wj[cont_y]
+	return inte
+	
+	
+	fun = lambda x, y: 3*x*y**2 - x**3
+	gauss_inte = gauss2d(fun, 0, 2, 0, 2, 2, 2)
+	print("Gauss quadrature: {:.6f}".format(gauss_inte))
+	\end{minted}
+\end{mdframed}
+
+
+
+
+
+

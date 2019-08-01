@@ -1,0 +1,33 @@
+\graphicspath{{img/metodos/}}
+\chapter{Métodos Numéricos}
+
+\section*{Presentación}
+
+Una amplia gama de problemas de ingeniería se reduce a la solución de un sistema de ecuaciones diferenciales que gobiernan el comportamiento, a lo largo de una region del espacio de alguna función de interés. Para que exista alguna posibilidad de solución la región de interés debe estar además limitada por una superficie (o frontera) sobre la cual se deben conocer además algunas caracteristicas de la solución. En matemáticas este tipo de formulaciones se conocen como problemas de contorno o de valores en la frontera (PVF), y si además involucran variaciones en el tiempo entonces se denominan problemas de valores iniciales y en la frontera (PVI-F).
+
+Sin embargo en la mayoría de casos reales la solución de los problemas de valores en la frontera es imposible de conseguir por medio de métodos análiticos que produzcan soluciones cerradas, es decir funciones. Como alternativa de solución apearece la posibilidad de recurrir a planteamientos matemáticos que permiten re-escribir los PVF en términos de formulaciones muy amigables para ser resueltas en el computador. En el caso de problemas de ingeniería basados en modelos con una fuerte base mecánica. como por ejemplo, la mecánica de suelos, la mecánica de sólidos, la mecánica de fluidos los PVF asociados suelen resolverse por métodos que forman la base de la denominada Mecánica Computacional. Por ejemplo los métodos de desplazamientos y fuerzas utilizados para el análisis de edificios y otras estructuras, pertenecen a la mecánica computacional. Similarmente en la solución de problemas mas complejos se usan los métodos de elementos finitos (FEM por sus siglas en ingles), los métodos de diferencias finitas (FD por sus siglas en ingles) y en una mayor proporción el método de elementos de frontera (BEM por sus siglas en ingles).
+
+En este capitulo revisamos, aunque no de manera profunda pero sí muy practica, algunas tecnicas numéricas que son fundamentales en la formulación de métodos típicos de la Mecánica Computacional como los ya descritos. En particular estaremos cubriendo los siguientes métodos:
+
+\begin{itemize}
+	\item Solución de ecuaciones no lineales (determinación de raices)
+	\item Interpolación
+	\item Integración numérica
+\end{itemize}
+
+Al final de este capitulo el estudiante estará en la capacidad de:
+
+\begin{itemize}
+	\item Reconocer el concepto de raíz de una función (o conjunto de funciones) y manejar los métodos básicos para su determinación en funciones escalares de una variable.
+	\item Resolver manualmente y/o con la ayuda de implementaciones en el computador problemas de determinación de raíces.
+	\item Reconocer el problema de interpolación como uno de aproximación de funciones que originalmente se desconocen en forma cerrada.
+	\item Manejar los aspectos matemáticos fundamentales del método de interpolación de Lagrange.
+	\item Resolver manualmente y/o con la ayuda de implementaciones en el computador problemas de aproximación de funciones a través de métodos de interpolación.
+	\item Reconocer los principios matemáticos básicos del problema de integración numérica de funciones sobre dominios en una y dos dimensiones.
+	\item Resolver manualmente y/o con la ayuda de implementaciones en el computador problemas de calculo numérico de integrales de funciones.
+\end{itemize}
+
+
+\input{src/raices}
+\input{src/interpol}
+\input{src/cuadratura}
