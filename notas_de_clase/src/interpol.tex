@@ -97,7 +97,16 @@ y donde se debe notar que
 \end{cases}\]
 
 \begin{tcolorbox}
-	En el lenguaje matemático es comun denominar la función $p(x)$ con la que se aproxima la función $f(x)$ como {\bf polinomio de interpoalción} mientras que cada uno de los polinomios de Lagrange del tipo $L_i(x)$ se denominan {\bf polinomios interpolantes} aunque también es posible encontrarlos como polinomios de interpolación. Será fácil reconocer quien es quien de acuerdo al contexto. De otro lado, en el lenguaje del método de los elementos finitos donde es frecuente el uso de técnicas de interpolación es común denominar a los polinomios interpolantes como funciones de forma o funciones base y a los puntos donde la función es conocida como nodos.
+En el lenguaje matemático es común denominar la función $p(x)$ con la que 
+se aproxima la función $f(x)$ como \textbf{polinomio de interpolación} 
+mientras que cada uno de los polinomios de Lagrange del tipo $L_i(x)$ se 
+denominan \textbf{polinomios interpolantes} aunque también es posible 
+encontrarlos como polinomios de interpolación. Será fácil reconocer quien 
+es quien de acuerdo al contexto. De otro lado, en el lenguaje del método de 
+los elementos finitos donde es frecuente el uso de técnicas de 
+interpolación es común denominar a los polinomios interpolantes como 
+funciones de forma o funciones base y a los puntos donde la función es 
+conocida como nodos.
 \end{tcolorbox}
 
 
@@ -141,11 +150,8 @@ en los demás nodos.
 \end{figure}
 
 La función o polinomio de interpolación resultante tras realizar la combinación lineal de estos polinomios de acuerdo con
-
 \[p(x) = L_1(x) f_1 + L_2(x) f_2 + L_3(x) f_3\, ,\]
-
 es
-
 \begin{align*}
 p(x) &= 10 x^2 + \frac{7}{2}(1 - x)x - \frac{5}{2}(1 + x)x - 10\, .\\
      &= 4x^2 + x - 10

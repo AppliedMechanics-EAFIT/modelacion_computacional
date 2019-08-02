@@ -1,0 +1,97 @@
+\documentclass[12pt, oneside, openany, spanish]{book}
+\usepackage[activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{babelbib}
+\usepackage{mathtools}
+\usepackage{amstext, amssymb, amsthm, amsmath, amsbsy}
+\usepackage{tabularx}
+\usepackage{caption} % Modify caption format
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{subcaption}  % subfig is deprecated
+\usepackage{multirow}
+\usepackage{leftidx}
+\usepackage[ruled]{algorithm2e} % Include algorithms
+\usepackage{listings} % To include code
+\usepackage{cite}  % Pretty citations
+\usepackage{bookmark} % Bookmarks in PDF
+\usepackage{cleveref}
+\usepackage{hyperref} % Nice details for pdf
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{physics} % Extra operators and cool stuff
+\usepackage{nicefrac}
+\usepackage{units}
+\usepackage{minted}
+\usepackage[nottoc]{tocbibind} % Add the references to the table of contents
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+
+
+%% Packages setup
+
+
+\captionsetup{
+	margin=20pt,
+	font=small,
+	labelfont=bf,
+	labelsep=period,
+    tablename=Tabla
+}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=blue,
+	urlcolor=blue,	
+	bookmarksopen=false,
+	pdftitle={Modelacion computacional},
+	pdfauthor={J. Gomez, N. Guarin-Zapata, E. Villegas-Pulgarin},
+	pdfkeywords={Modelacion computacional, Metodos numericos},
+	pdfsubject={Notas de clase},
+	pdfpagemode=UseOutlines,
+	pdfstartview=FitH
+}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+%\usemintedstyle{colorful}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% New  commands
+
+\newcommand{\urlbib}[1]{{\footnotesize{\url{#1}}}} % URL in references
+\newcommand{\fullref}[1]{\ref{#1} at page \pageref{#1}}
+
+% make "C++" look pretty when used in text by touching up the plus signs
+\newcommand{\CPP}
+{C\nolinebreak[4]\hspace{-.05em}\raisebox{.22ex}{\footnotesize\bf ++}}
+
+%% Math commands
+
+% Integrals
+\newcommand{\intL}{\int\limits}
+
+
+% Monospace text
+\newcommand{\ttt}{\texttt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Rename commmands
+%%
+\addto\captionsspanish{
+  \renewcommand{\contentsname}
+    {Tabla de contenidos}
+}
+\renewcommand{\listingscaption}{Código}
+\newcommand{\mintpy}[1]{\mintinline{python}{#1}}
+\crefname{table}{tabla}{tablas}
+\Crefname{table}{Tabla}{Tablas}
+\crefname{section}{sección}{secciones}
+\Crefname{section}{Sección}{Secciones}
+
+%% Document setup
+\setlength{\parskip}{0.5 cm}
+\decimalpoint

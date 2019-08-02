@@ -563,7 +563,9 @@ Claramente se tiene que para el valor de $y$ constante la contribución a la int
 
 \[\int\limits_{x_1(y)}^{x_2(y)} f(x,y) \dd{x}\, ,\]
 
-de forma que el cálculo de la integral sobre la totalidad de la region $R$ se completa repitiendo el proceso para valores de $y$ constantes variando entre $y_1$ y $y_2$ y dando la integral total como:
+de forma que el cálculo de la integral sobre la totalidad de la región $R$ se 
+completa repitiendo el proceso para valores de $y$ constantes variando entre 
+$y_1$ y $y_2$ y dando la integral total como:
 
 \begin{equation}
   I = \int\limits_{y_1}^{y_2} \left\{ \int\limits_{x_1(y)}^{x_2(y)} f(x,y) \dd{x}  \right\} \dd{y}
@@ -574,9 +576,7 @@ de forma que el cálculo de la integral sobre la totalidad de la region $R$ se c
 Para dar mayor claridad a la \cref{iterada}, nótese que la integral interna puede escribirse como una función de $y$
 
 \[F(y) = \int\limits_{x_1(y)}^{x_2(y)} f(x,y) \dd{x}\, , \]
-
 y la integral externa como
-
 \[I = \int\limits_{y_1}^{y_2} F(y) \dd{y}\, . \]
 
 Notese que el calculo de $I$ se ha reducido a 2 integrales uni-dimensionales y en consecuencia el proceso puede resolverse por medio de las cuadraturas uni-dimensionales ya discutidas. En este caso la función mas interna $F(y)$ resulta de integrar solo la variación en $x$ y posteriormente la integral $I$ resulta de integrar la variación en $y$. Alternativamente (ver \cref{fig:diry}) también es posible definir
@@ -598,8 +598,6 @@ de manera que la integral completa $I$ queda definida por
 \subsubsection*{Ejemplo}
 
 Considere la región (o dominio) triangular de la \cref{fig:ejeint}.
-
-
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=8cm]{ejeint.pdf}
@@ -607,34 +605,27 @@ Considere la región (o dominio) triangular de la \cref{fig:ejeint}.
 	\label{fig:ejeint}
 \end{figure}
 
-
-
-Utilice el concepto de integrales iteradas discutido anteriormente para determinar la integral de la función
-
+Utilice el concepto de integrales iteradas discutido anteriormente para 
+determinar la integral de la función
 \[f(x,y)=x y^2\]
-
 sobre la región $R$ de la figura.
 
 La integral sobre $R$ esta dada por
-
 \[I = \iint f(x,y) \dd{A}\]
-
-donde $dd{A}$ representa un elemento diferencial de superficie. Supongamos que tomaremos rectangulos paralelos al eje $x$ de manera que para valores constantes de $y$ se tiene:
-
+donde $\dd{A}$ representa un elemento diferencial de superficie. Supongamos que 
+tomaremos rectángulos paralelos al eje $x$ de manera que para valores 
+constantes de $y$ se tiene:
 \[x_1(y) = \frac{y}{2}\]
 y
 \[x_2(y) = 1\]
-
 y por lo tanto se tiene que:
 \[F(y) = \int\limits_{x_1(y)}^{1.0} x y^2 \dd{x}  \equiv \int\limits_{y/2}^{1.0} x y^2 \dd{x}\, , \]
-
 luego
-
 \[F(y) = \left[ \frac{1}{2} x^2 y^2 \right]_{y/2}^{1.0} \equiv \frac{1}{2} y^2 
 - \frac{1}{8}  y^4\, .\]
-
-Identificando ahora los limites inferior y superior en la dirección $y$ como ${y_1} = 0$ y ${y_2} = 2$ es posible integrar la dependencia en $y$ de acuerdo con:
-
+Identificando ahora los limites inferior y superior en la dirección $y$ como 
+${y_1} = 0$ y ${y_2} = 2$ es posible integrar la dependencia en $y$ de acuerdo 
+con:
 \[I = \int\limits_0^{2.0} F(y) \dd{y}  \equiv \int\limits_0^{2.0} 
 \left(\frac{1}{2}y^2 - \frac{1}{8} y^4\right) \dd{y}  \equiv \frac{8}{15}\, .\]
 
@@ -663,7 +654,6 @@ y
 \caption{Integración en la dirección y sobre la región triangular $R$.}
 \label{fig:ejeinty}
 \end{figure}
-
 donde:
 \[{y_1}(x) = 0\]
 \[{y_2}(x) = 2x\]
@@ -672,7 +662,9 @@ luego
 de manera que la integral se reduce a:
 \[I = \int\limits_0^{1.0} {\frac{8}{3}{x^4}dx}  \equiv \frac{8}{{15}}.\]
 
-En el apendice se presenta una rutina con la correspondiente implementación en Python del esquema de integrales iteradas. Esta permite calcular integrales sobre regiones rectangulares. Por ejemplo si se calcula la siguiente integral
+En el apéndice se presenta una rutina con la correspondiente implementación en 
+Python del esquema de integrales iteradas. Esta permite calcular integrales 
+sobre regiones rectangulares. Por ejemplo si se calcula la siguiente integral
 
 \[\int\limits_0^2\int\limits_0^2 [3xy^2 - x^3] \dd{x}\dd{y} = 8\, , \]
 
@@ -685,47 +677,34 @@ Gauss quadrature: 8.000000
 \newpage
 \subsubsection{Ejercicios}
 \begin{enumerate}
-%	
-	\item \label{punto01} Calcule la integral de la función
-	
-	\[f(x,y)=4x^2+3xy+y^2\]
-	
-	sobre los dominios planos mostrados en las figuras
-	
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.65\textwidth]{domain1}
-		\caption{Dominios de integración para el problema 1.}
-		\label{fig:tan1}
-	\end{figure}
-	
-	
 
-	
-	
-	\item \label{punto02} Calcule la integral de la función
-	
-	\[f(r,s)=rs\]
-	
-	sobre el dominio triangular mostrado en la figura
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.50\textwidth]{domain3}
-		\caption{Dominios de integración para el problema 2.}
-		\label{fig:tan2}
-	\end{figure}
-	
-	\item \label{punto03} Calcular las siguientes integrales usando una cuadratura de Gauss apropiada:
-	
-	\[I=\int_{1.0}^{1.5}x^2\ln x\operatorname dx\]
-	
-	\[I=\int_0^\frac{\mathrm\pi}4e^{3x}Sin2x\operatorname dx\]
-	
-	\[I=\int_0^\frac{\mathrm\pi}4Cos^2x\operatorname dx\]
+\item \label{punto01} Calcule la integral de la función
+\[f(x,y)=4x^2+3xy+y^2\]
+sobre los dominios planos mostrados en las figuras
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{domain1}
+	\caption{Dominios de integración para el problema 1.}
+	\label{fig:tan1}
+\end{figure}
 
+\item \label{punto02} Calcule la integral de la función
+\[f(r,s)=rs\]
+sobre el dominio triangular mostrado en la figura
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.50\textwidth]{domain3}
+\caption{Dominios de integración para el problema 2.}
+\label{fig:tan2}
+\end{figure}
 	
+\item \label{punto03} Calcular las siguientes integrales usando una cuadratura 
+de Gauss apropiada:
+\begin{align*}
+&I = \int_{1.0}^{1.5} x^2\ln x \dd{x} \\
+&I = \int_0^\frac{\pi}{4} e^{3x} \sin2x\dd{x} \\
+&I = \int_0^\frac{\pi}{4} \cos^2x\dd{x}
+\end{align*}
 	
 \end{enumerate}
-

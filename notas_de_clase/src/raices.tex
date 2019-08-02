@@ -1,10 +1,15 @@
 \section{Raíces de Ecuaciones}
-El problema de determinación de raíces (o de los ceros) de una función se presenta frecuentemente en diferentes aplicaciones de ingeniería y física. Acá discutiremos 2 métodos que pueden considerarse clásicos, como son el método de bisección y el método de Newton-Raphson. El primero tiene valor ya que es bastante intuitivo aunque no siempre eficaz, mientras que el segundo, al desprenderse de la expansión de una función en su serie de Taylor permite generalizarse a problemas de sistemas de ecuaciones.
+El problema de determinación de raíces (o de los ceros) de una función se 
+presenta frecuentemente en diferentes aplicaciones de ingeniería y física. Acá 
+discutiremos 2 métodos que pueden considerarse clásicos, como son el método de 
+bisección y el método de Newton-Raphson. El primero tiene valor ya que es 
+bastante intuitivo aunque no siempre eficaz, mientras que el segundo, al 
+desprenderse de la expansión de una función en su serie de Taylor permite 
+generalizarse a problemas de sistemas de ecuaciones.
 
 \subsection{Planteamiento del problema}
 
 Consideremos una función escrita de la forma
-
 \begin{equation}
 y=f(x)
 \label{funcionY}
@@ -19,19 +24,21 @@ la cual seguramente sabemos interpretar como una regla que transforma valores de
 	\label{fig:ecuacion}
 \end{figure}
 
-Por ejemplo un caso partícular de una regla de transformación o función puede ser de la forma:
-
+Por ejemplo, un caso particular de una regla de transformación o función puede 
+ser de la forma:
 \[f(x) = \ x^3 + 4x^2 - 10\, .\]
 
-El problema de busqueda de raíces de la función consiste en encontrar valores de la variable independiente $x$ que cuando sean transformados por la regla $f(x)$ produzcan valores nulos de $y.$ Matematicamente esta pregunta la podemos plantear como econtrar valores de $x$ que satisfagan la condición:
-
+El problema de búsqueda de raíces de la función consiste en encontrar valores 
+de la variable independiente $x$ que cuando sean transformados por la regla 
+$f(x)$ produzcan valores nulos de $y$. Matemáticamente esta pregunta la podemos 
+plantear como encontrar valores de $x$ que satisfagan la condición:
 \[f(x) = 0.0\, .\]
 
-Por ejemplo la \cref{fig:raiz} muestra la variación de la función
-
+Por ejemplo, la \cref{fig:raiz} muestra la variación de la función
 \[f(x) = \ x^3 + 4x^2 - 10\, ,\]
-
-para valores de $x$ en el intervalo $[-4, 2].$ En la gráfica el círculo blanco correspondiente a la intercepción de la línea $y=0$ y la función corresponde a una raíz de la función. Esta tiene un valor aproximado de $x=1.4.$
+para valores de $x$ en el intervalo $[-4, 2].$ En la gráfica el círculo blanco 
+correspondiente a la intersección de la línea $y=0$ y la función corresponde a 
+una raíz de la función. Esta tiene un valor aproximado de $x=1.4.$
 
 \begin{figure}[H]
 	\centering
@@ -44,37 +51,53 @@ para valores de $x$ en el intervalo $[-4, 2].$ En la gráfica el círculo blanco
 La función puede tener varias raíces reales (positivas o negativas) o inclusive varias raíces complejas.
 
 \paragraph{Ejemplo: Determinación de caudal.}
-Un problema típico en ingeniería hidráulica es el de determinar el caudal $Q$ con el que es necesario alimentar una turbo-máquina de potencia especifica $\phi$, resistencia total a fluir $R_T$ la cual está localizada entre 2 niveles con salto $\Delta H$. Usando argumentos de conservación de energía se puede demostrar que este caudal satisface la condición:
+Un problema típico en ingeniería hidráulica es el de determinar el caudal $Q$ 
+con el que es necesario alimentar una turbo-máquina de potencia especifica
+$\phi$, resistencia total a fluir $R_T$ la cual está localizada entre 2 niveles 
+con salto $\Delta H$. Usando argumentos de conservación de energía se puede 
+demostrar que este caudal satisface la condición:
 
 \begin{equation}
 	{R_T}{Q^3} - \Delta HQ + \phi  = 0.
 \label{caudal}
 \end{equation}
 
-Claramente, se trata de un problema de determinación de raices tras encontrar el caudal $Q$ que satisfaga la condició::
-
+Claramente, se trata de un problema de determinación de raíces tras encontrar 
+el caudal $Q$ que satisfaga la condición:
 \[f(Q) = 0.0\, ,\]
-
-donde 
-
+donde
 \begin{equation}
-f(Q) ={R_T}{Q^3} - \Delta HQ + \phi.
+f(Q) ={R_T}{Q^3} - \Delta HQ + \phi\, .
 \label{caudalF}
 \end{equation}
 
 \begin{tcolorbox}
-En computación se denomina iteración la operación de un procedimiento que se aplica al resultado de una operación previa.
+En computación se denomina \textbf{iteración} un procedimiento que se aplica al 
+resultado de una operación previa.
 \end{tcolorbox}
 
+En general, los métodos de determinación de raíces son iterativos y requieren 
+de una estimación inicial de la raíz (o raíces). De acuerdo con dicha 
+estimación se pueden tener los siguientes resultados (ver 
+\cref{fig:raizconverge}):
+\begin{itemize}
+	\item Falla de convergencia.
+	\item Convergencia a un valor incorrecto.
+	\item Convergencia a un valor correcto.
+\end{itemize}
 
-	En general, los métodos de determinación de raíces son iterativos y requieren de una estimación inicial de la raíz (o raíces). De acuerdo con dicha estimación se pueden tener los siguientes resultados (ver \cref{fig:raizconverge}):
-	\begin{itemize}
-		\item Falla de convergencia.
-		\item Convergencia a un valor incorrecto.
-		\item Convergencia a un valor correcto.
-	\end{itemize}
-
-Antes de iniciar el estudio formal de un par de métodos clásicos para determinación de raíces es importate tener una idea intuitiva de la definición de convergencia y divergencia. Concentremonos en la \cref{fig:raizconverge} en la cual se grafica la variación del error vs el numéro de iteraciones en un algoritmo. Concretamente la convergencia describe la velocidad con la que un cálculo iterativo se aproxima a una solución. La gráfica presenta el porcentaje de error contra el número de iteraciones requeridas para predecir la raíz $x=1.3652305$ por medio de los 2 métodos que estudiaremos en esta sección a saber el método de bisección y el método de Newton.
+Antes de iniciar el estudio de un par de métodos clásicos para 
+determinación de raíces es importante tener una idea de los conceptos de 
+convergencia y divergencia. Intuitivamente, decimos que un método converge 
+cuando los valores se acercan cada vez más y que diverge cuando pasa lo 
+contrario, se alejan entre ellos. Adicionalmente, llamamos \textbf{tasa de 
+convergencia} a la rapidez con la que un cálculo iterativo se aproxima a una 
+solución. Ahora, concentrémonos en la \cref{fig:raizconverge} en la cual se 
+grafica la variación del error vs el número de iteraciones en un algoritmo. 
+La gráfica presenta el porcentaje de error contra el número de iteraciones 
+requeridas para predecir la raíz $x=1.3652305$ por medio de los 2 métodos que 
+estudiaremos en esta sección a saber el método de bisección y el método de 
+Newton. Podemos ver que uno de los métodos converge más rápidamente que el otro.
 
 \begin{figure}[H]
   \centering
@@ -86,25 +109,60 @@ Antes de iniciar el estudio formal de un par de métodos clásicos para determin
 
 \subsection{Localización incremental de raíces}
 
-El cálculo de las raíces de una ecuación involucra 2 procesos que se discutirán a continuación. Inicialmente se identifican de manera aproximada las localizaciones de las raíces en un intervalo determinado. Este proceso se denomina {\bf detección} o {\bf bracketing}. El proceso de detección arroja valores de las raíces con baja precisión.
+El cálculo de las raíces de una ecuación involucra 2 procesos que se discutirán 
+a continuación. Inicialmente se identifican de manera aproximada las 
+localizaciones de las raíces en un intervalo determinado. Este proceso se 
+denomina \textbf{detección} o \textbf{bracketing}. El proceso de detección 
+arroja valores de las raíces con baja precisión.
 
-Para mejorar la precisión se ejecuta un segundo paso tras seleccionar una precisión especificada mediante una {\bf tolerancia} o valor de referencia. La tolerancia indica cual es la definiciòn aceptable de cero para determinar si efectivamente se encontró la raíz. Esta es necesaria yá que en el computador solo es posible especificar el cero hasta cierto número de cifras significativas, en otras palabras en el computador no existe el cero matemático. El segundo proceso corresponde entonces al acercamiento a la raíz con una precisión dada y definida en términos de la tolerancia. Este segundo paso se denomina como el de {\bf determinación} de la raíz.  En resumen, el proceso de busqueda de raíces implica 2 pasos:
+Para mejorar la precisión se ejecuta un segundo paso tras seleccionar una 
+precisión especificada mediante una \textbf{tolerancia} o valor de referencia. 
+La tolerancia indica cual es la definición aceptable de cero para determinar si 
+efectivamente se encontró la raíz. Esta es necesaria ya que en el computador 
+solo es posible especificar el cero hasta cierto número de cifras 
+significativas, en otras palabras, en el computador no existe el cero 
+matemático. El segundo proceso corresponde entonces al acercamiento a la raíz 
+con una precisión dada y definida en términos de la tolerancia. Este segundo 
+paso se denomina \textbf{determinación} de la raíz. En resumen, el 
+proceso de búsqueda de raíces implica 2 pasos:
 
 \begin{itemize}
 	\item[i.] Localización inicial de las raíces o {\bf Detección}.
 	\item[ii.] Acercamiento o mejoramiento en la precisión del valor de la raíz o {\bf Determinación}.
 \end{itemize}
 
-En el proceso de detección de la raíz la idea fundamental consiste en recorrer la función por intervalos de tamaño $\Delta x$ y con limites $x_1$ y $x_2$. Si durante el recorrido se encuentra que los valores $f(x_1)$ y $f(x_2)$ de las funciones tienen signos diferentes, entonces se concluye que existe al menos una raíz en el intervalo. El proceso se resume en los siguientes 2 pasos:
+En el proceso de detección de la raíz la idea fundamental consiste en recorrer 
+la función por intervalos de tamaño $\Delta x$ y con límites $x_1$ y $x_2$. Si 
+durante el recorrido se encuentra que los valores $f(x_1)$ y $f(x_2)$ de las 
+funciones tienen signos diferentes, entonces se concluye que existe al menos 
+una raíz en el intervalo. El proceso se resume en los siguientes 2 pasos:
 
 \begin{itemize}
 	\item[i]  Recorrido del dominio por intervalos $\Delta x$.
 	\item[ii] Evaluación de la función para detectar cambios de signo.
 \end{itemize}
 
-Para explicar el proceso y su eventual solución en el computador tomemos como referencia la \cref{fig:bracketing} en la que se presenta una función que tiene 2 raíces (circulos negros) en el intervalo $[a,b]$. El proceso de detección se describe además en el \cref{alg:brack}. Los datos de entrada al problema son los extremos del intervalo correspondientes a $x=a$ y $x=b$; el número de subintervalos $N$ en los que se partirá el dominio del problema; y la funciónn $f(x)$ cuya raíz se desea determinar.  El algoritmo entregará como resultado las raices encontradas, las cuales almacenará en un vector denominado $x_R$. En el primer paso del algoritmo calculamos el tamaño del subintervalo $\Delta x$ y fijamos el contador de detección de raíces $iroot$ en cero. Este contador se incerementará en 1 cada que el algoritmo detecte una raíz.
+Para explicar el proceso y su eventual solución en el computador tomemos como 
+referencia la \cref{fig:bracketing} en la que se presenta una función que tiene 
+2 raíces (círculos negros) en el intervalo $[a,b]$. El proceso de detección se 
+describe además en el \cref{alg:brack}. Los datos de entrada al problema son 
+los extremos del intervalo correspondientes a $x=a$ y $x=b$; el número de 
+subintervalos $N$ en los que se partirá el dominio del problema; y la función 
+$f(x)$ cuya raíz se desea determinar.  El algoritmo entregará como resultado 
+las raíces encontradas, las cuales almacenará en un vector denominado $x_R$. En 
+el primer paso del algoritmo calculamos el tamaño del subintervalo $\Delta x$ y 
+fijamos el contador de detección de raíces $iroot$ en cero. Este contador se 
+incrementará en 1 cada que el algoritmo detecte una raíz.
 
-La parte principal del algoritmo consiste en un ciclo que recorre los $N$ sub-intervalos en los que se ha partido el problema y detecta cambios de signo hacieno evaluaciones del producto $f (x_1) \times f (x_2).$ Si se da la condición $f \left( x_1 \right) \times f \left( x_2 \right) < 0.0$ entonces se concluye que existe una raíz en algún punto entre $x=x_1$ y $x=x_1+ \Delta x$. Este evento queda registrado en el contador $iroot$. Al mismo tiempo se selecciona el inicio del intervalo como el de localización aproximada de la raíz. Esta se almacena en la posición $irrot$ del vector $x_R$ . Este algoritmo sencillo se da como referencia en el apendice de estas notas.
+La parte principal del algoritmo consiste en un ciclo que recorre los $N$ 
+subintervalos en los que se ha partido el problema y detecta cambios de signo 
+haciendo evaluaciones del producto $f (x_1) \times f (x_2).$ Si se da la 
+condición $f \left( x_1 \right) \times f \left( x_2 \right) < 0.0$ entonces se 
+concluye que existe una raíz en algún punto entre $x=x_1$ y $x=x_1+ \Delta x$. 
+Este evento queda registrado en el contador $iroot$. Al mismo tiempo se 
+selecciona el inicio del intervalo como el de localización aproximada de la 
+raíz. Esta se almacena en la posición $irrot$ del vector $x_R$ . Este algoritmo 
+sencillo se da como referencia en el apéndice de estas notas.
 
 \begin{figure}[H]
 \centering
@@ -141,14 +199,18 @@ $x_2 \leftarrow a$ ;\\
 %
 \end{algorithm}
 
-La aplicación del código anterior a la función $f(x) = \ x^3 + 4x^2 - 10$ en el intervalo comprendido entre $a=-10.0$ y $b=10.0$ con $\Delta x = 1.0$ produce el vector de raíces $x_R$
-
+La aplicación del código anterior a la función $f(x) = \ x^3 + 4x^2 - 10$ en el 
+intervalo comprendido entre $a=-10.0$ y $b=10.0$ con $\Delta x = 1.0$ produce 
+el vector de raíces $x_R$
 \begin{verbatim}
 A change of sign was found.
 [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
 \end{verbatim}
-
- el cual indica que la función tiene un cero en el intervalo $[1.0,2.0]$ y localizado aproximadamente en $x = 1.0$. Este valor de la raíz debe ser posteriormente refinado para encontrar el valor consistente con la tolerancia prescrita. En las secciones que se presentan a continuación discutiremos 2 métodos clásicos usados para realizar este refiniamiento de la raíz.
+el cual indica que la función tiene un cero en el intervalo $[1.0,2.0]$ y 
+localizado aproximadamente en $x = 1.0$. Este valor de la raíz debe ser 
+posteriormente refinado para encontrar el valor consistente con la tolerancia 
+prescrita. En las secciones que se presentan a continuación discutiremos 2 
+métodos clásicos usados para realizar este refinamiento de la raíz.
 
 
 \subsection{Método de bisección}
@@ -197,7 +259,10 @@ $n_{\max}  \leftarrow \ceil{\log_2\left(\frac{b - a}{tol}\right)}$ ;\\
 \label{alg:repeat}
 \end{algorithm}
 
-En el apendice se presenta el código en Python correspondinete al algoritmo de bisección el cual arroja el siguiente resultado tras aplicarlo a la función $f (x) = \ x^3 + 4x^2 - 10$, sobre el intervalo [-2, 2], usando una tolerancia $tol = 10^{-4}$.
+En el apéndice se presenta el código en Python correspondiente al algoritmo de 
+bisección el cual arroja el siguiente resultado tras aplicarlo a la función $f 
+(x) = \ x^3 + 4x^2 - 10$, sobre el intervalo [-2, 2], usando una tolerancia 
+$tol = 10^{-4}$.
 
 \begin{verbatim}
 n: 0, x: 0.0
@@ -221,49 +286,63 @@ Maximum number of iterations reached.
 \end{verbatim}
 
 \subsection{Método de Newton-Raphson}
+
+\textcolor{blue}{Este método tiene la desventaja de que requiere, además de la 
+evaluación de la función $f(x)$, también la de su primera derivada $f'(x)$.}
+
+El método de Newton-Raphson suele converger más rápido que el método de 
+bisección. Esto se debe a que se incluye más información sobre la función en 
+las iteraciones, a saber, las derivada. Por la forma que toma la iteración la 
+función debe tener un valor diferente de cero para cada aproximación. Como se 
+discutió anteriormente las iteraciones se detiene una vez se alcance el cero 
+dentro de una tolerancia prescrita.
+
 \subsubsection*{Derivación matemática}
-Sea $x_i$ la aproximación de orden $i$ a la raíz buscada. Por ejemplo cuando $i=0$ $x_0$ es el valor encontrado por el algoritmo de detección. Sea $p$ el valor refinado de la raíz, el cual por lo tanto se encuentra en la vecindad de $x_i$. Escribiendo la función como una serie de Taylor alrededor de $p$ se tiene:
-
-
+Sea $x_i$ la $i$-ésima\footnote{Por ejemplo, $x_0$ es el valor 
+encontrado por el algoritmo de detección.} aproximación a la raíz buscada y $p$ 
+el valor refinado de la raíz que se encuentra en la vecindad de 
+$x_i$. Escribiendo la función como una serie de Taylor alrededor de $p$ se 
+tiene:
 \[f(p)=f(x_i)+f'(x_i)(p-x_i)+{(p-x_i)}^2\frac{f''(x_i)}{2!}+...\]
 
-Luego, usando la condición $f(p)\approx0$ y linealizando se tiene:
-
+Luego, asumiendo que $f(p)$ es cercano a cero ($f(p)\approx0$) y linealizando 
+se tiene:
 \[ 0\approx f(x_i)+f'(x_i)(p-x_i) \]
-
 haciendo $x_{i+1}\equiv p$ y re-escribiendo se tiene la expresión
-
-\[
-x_{i+1}\approx x_i-\frac{f(x_i)}{f'(x_i)}
-\]
-
-correspondiente a la iteración de Newton-Raphson que permite determinar la raíz aproximada  $x_{i+1}$ a partir de la aproximación $x_i$.
+\[x_{i+1}\approx x_i-\frac{f(x_i)}{f'(x_i)}\]
+correspondiente a la iteración de Newton-Raphson que permite determinar la raíz 
+aproximada  $x_{i+1}$ a partir de la aproximación $x_i$.
 
 \begin{tcolorbox}
-Se denomina linealización a la operación de eliminar los terminos de orden 2 y superiores y retener solo los términos líneales en una expresión. Claramente la iteración de Newton-Raphson corresponde a la serie de Taylor linealizada de la expansión de la función alrededor de la raíz buscada.
+Se denomina \textbf{linealización} a la operación de eliminar los términos de 
+orden 2 y superiores y retener solo los términos lineales en una expresión. 
+La iteración de Newton-Raphson corresponde a la serie de Taylor 
+linealizada de la expansión de la función alrededor de la raíz buscada.
 \end{tcolorbox}
 
 \subsubsection*{Derivación geométrica}
-Geométricamente el método de Newton-Raphson consiste en extender la recta tangente en el punto actual $x_i$ hasta que cruce el cero para luego hacer la siguiente aproximación  en la abscisa de dicho punto de cruce. Este método tiene la desventaja de que 
-requiere, además de la evaluación de la función $f(x)$, también la de su primera derivada $f'(x)$. El proceso se ilustra en la \cref{fig:newton} de donde es evidente que para iniciar las iteraciones se requiere una aproximación inicial ($x_0$) a la raíz. Este valor incial es el encontrado mediante el algoritmo de detección discutido anteriormente.
+Geométricamente, el método de Newton-Raphson consiste en extender la recta 
+tangente en el punto actual $x_i$ hasta que cruce el cero para luego hacer la 
+siguiente aproximación  en la abscisa de dicho punto de cruce. El proceso se 
+ilustra en la \cref{fig:newton} en donde se ve que para iniciar las 
+iteraciones se requiere una aproximación inicial ($x_0$) a la raíz. Este valor 
+inicial es el encontrado mediante el algoritmo de detección discutido 
+anteriormente.
 
-
-
-Para derivar el método desde una mirada geométrica partiremos del punto $x_i$, encontraremos la recta tangente que pasa por el mismo y lo extenderemos hasta su cruce con cero, como ya se describió. Usando la ecuación de la pendiente, tenemos
-
+Para derivar el método desde una mirada geométrica partiremos del punto $x_i$, 
+encontraremos la recta tangente que pasa por el mismo y lo extenderemos hasta 
+su cruce con cero, como ya se describió. Usando la ecuación de la pendiente, 
+tenemos
 \[m = \frac{0 - f(x_i)}{x_{i+1} - x_i}\, ,\]
-
 pero, sabemos que la pendiente es $m = f'(x_i)$, luego
-
 \[f'(x_i) = -\frac{f(x_i)}{x_{i + 1} - x_i}\, ,\]
-
-y si resolvemos esta ecuación para $x_{i +1}$ obtenemos el punto para el cual la recta toma el valor de cero. Este será el nuevo punto inicial para repetir el proceso y correspondiente a la iteración de Newton-Raphson.
-
+y si resolvemos esta ecuación para $x_{i +1}$ obtenemos el punto para el cual 
+la recta toma el valor de cero. Este será el nuevo punto inicial para repetir 
+el proceso y correspondiente a la iteración de Newton-Raphson.
 \begin{equation}
   x_{i + 1} = x_i - \frac{f(x_i)}{f'(x_i)}
   \label{eq:iteracion_newton}
 \end{equation}
-
 
 \begin{figure}[H]
 \centering
@@ -273,7 +352,8 @@ y si resolvemos esta ecuación para $x_{i +1}$ obtenemos el punto para el cual l
 \end{figure}
 
 
-El método de Newton-Raphson suele converger más rápido que el método de bisección. Esto se debe a que se incluye más información sobre la función en las iteraciones, a saber, las derivada. Por la forma que toma la iteración la función debe tener un valor diferente de cero para cada aproximación. Como se discutió anteriormente las iteraciones se detiene una vez se alcance el cero dentro de una tolerancia prescrita. El \cref{alg:newton} presenta el método de Newton para un punto inicial $x$ mientras que su correspondiente código en Python se presenta en los apendices.
+ El \cref{alg:newton} presenta el método de Newton para un punto inicial $x$ 
+ mientras que su correspondiente código en Python se presenta en los apendices.
 
 \begin{algorithm}[H]
 \SetAlgoLined
