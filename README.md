@@ -8,6 +8,8 @@ Este repositorio contiene, de manera temporal, el material para el curso de Mode
 
 - [NB-2: Interpolación 1D](<https://bit.ly/2SYSPcq>)
 
+- [NB-3: Interpolación por tramos](<https://bit.ly/2KoHMW4>)
+
 
 ## Licencia
 
