@@ -6,6 +6,8 @@ Este repositorio contiene, de manera temporal, el material para el curso de Mode
 
 - [NB-1: Busqueda de raices](<https://bit.ly/33728fe>)
 
+- [NB-2: Interpolación 1D](<https://bit.ly/2SYSPcq>)
+
 
 ## Licencia
 
