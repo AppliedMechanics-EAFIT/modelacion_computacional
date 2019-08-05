@@ -1,13 +1,26 @@
 
+
 <link href='http://fonts.googleapis.com/css?family=Fenix' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:100,300,400,500,700,800,900,100italic,300italic,400italic,500italic,700italic,800italic,900italic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:300,400' rel='stylesheet' type='text/css'>
+
 <style>
-/* Based on Lorena Barba template available at: https://github.com/barbagroup/AeroPython/blob/master/styles/custom.css*/
+
+/*
+Template for Notebooks for Modelación computacional.
+
+Based on Lorena Barba template available at:
+
+    https://github.com/barbagroup/AeroPython/blob/master/styles/custom.css
+*/
+
+/* Fonts */
 @font-face {
 font-family: "Computer Modern";
 src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
 }
+
+/* Text */
 div.cell{
 width:800px;
 margin-left:16% !important;
@@ -67,7 +80,10 @@ display: block;
 color: rgb( 240, 20, 20 )
 }
 </style>
+
 <script>
+/* Equations */
+
 MathJax.Hub.Config({
 TeX: {
 extensions: ["AMSmath.js"]
