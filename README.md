@@ -1,16 +1,22 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jgomezc1/Mod_Temporal/master)
+
 # Modelación computacional (temporal)
 
 Este repositorio contiene, de manera temporal, el material para el curso de Modelación Computacional.
 
 ## Notebooks
 
-- [NB-1: Busqueda de raices](<https://bit.ly/33728fe>)
+1. [Búsqueda de raices](<https://bit.ly/33728fe>)
 
-- [NB-2: Interpolación 1D](<https://bit.ly/2SYSPcq>)
+2. Interpolación
 
-- [NB-2: Interpolación por tramos](<https://bit.ly/2KoHMW4>)
+   1. [Interpolación 1D](<https://bit.ly/2SYSPcq>)
 
-- [NB-2: Interpolación en 2D](<https://bit.ly/2OG8MWx>)
+   2. [Interpolación por tramos](<https://bit.ly/2KoHMW4>)
+
+   3. [Interpolación en 2D](<https://bit.ly/2OG8MWx>)
+
+3. Integración numérica
 
 
 ## Licencia
