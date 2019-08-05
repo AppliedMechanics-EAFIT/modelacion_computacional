@@ -1,6 +1,6 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jgomezc1/Mod_Temporal/master)
-
 # Modelación computacional (temporal)
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jgomezc1/Mod_Temporal/master)
 
 Este repositorio contiene, de manera temporal, el material para el curso de Modelación Computacional.
 
@@ -17,7 +17,6 @@ Este repositorio contiene, de manera temporal, el material para el curso de Mode
    3. [Interpolación en 2D](<https://bit.ly/2OG8MWx>)
 
 3. Integración numérica
-
 
 ## Licencia
 
