@@ -6,17 +6,17 @@ Este repositorio contiene, de manera temporal, el material para el curso de Mode
 
 ## Notebooks
 
-1. [Búsqueda de raices](<https://bit.ly/33728fe>)
+1. [Búsqueda de raices](https://nbviewer.jupyter.org/github/jgomezc1/Mod_Temporal/blob/master/notebooks/01_busqueda_raices.ipynb)
 
 2. Interpolación
 
-   1. [Interpolación 1D](<https://bit.ly/2SYSPcq>)
+   1. [Interpolación 1D](https://nbviewer.jupyter.org/github/jgomezc1/Mod_Temporal/blob/master/notebooks/02a_interpolacion.ipynb)
 
-   2. [Interpolación por tramos](<https://bit.ly/2KoHMW4>)
+   2. [Interpolación por tramos](https://nbviewer.jupyter.org/github/jgomezc1/Mod_Temporal/blob/master/notebooks/02b_interpolacion_tramos.ipynb)
 
-   3. [Interpolación en 2D](<https://bit.ly/2OG8MWx>)
+   3. [Interpolación en 2D](https://nbviewer.jupyter.org/github/jgomezc1/Mod_Temporal/blob/master/notebooks/02c_interpolacion_2d.ipynb)
 
-3. Integración numérica
+3. [Integración numérica](https://nbviewer.jupyter.org/github/jgomezc1/Mod_Temporal/blob/master/notebooks/03_integracion_numerica.ipynb)
 
 ## Licencia
 
