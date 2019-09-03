@@ -1,0 +1,39 @@
+nombre,codigo_nombre,latitud,longitud,tiposuelo,estado,alturaniveldelmar,municipio,Acel N-S,Acel E-W,Acel_VER
+Jardin Botanico (BOT),BOT,6.271,-75.565,C,I,1460,Medellin,1.345,1.829,0.675
+Comfama Aranjuez (COM),COM,6.285,-75.566,C,I,1563,Medellin,1.567,2.01,1.017
+ITM BOSTON (ITM),ITM,6.244,-75.552,B,A,1620,Medellin,3.198,4.618,2.557
+Tanque de Aures EPM (AUR),AUR,6.293,-75.598,C,A,2026,Medellin,4.261,3.984,1.717
+Centro de Control EPM (ECC),ECC,6.267,-75.604,C,A,1450,Medellin,4.397,4.145,1.899
+Tanque El Tesoro EPM (EET),EET,6.199,-75.554,C,I,1650,Medellin,8.276,5.565,3.384
+Tanque El Tesoro Prof (EET p),EET p,6.199,-75.554,D,I,1640,Medellin,4.299,3.788,1.238
+Planta La Montaña EPM (EMO),EMO,6.28,-75.538,C,A,2170,Medellin,4.631,2.82,2.395
+Santa Elena AEROCIVIL (ESE),ESE,6.19,-75.528,A,A,2820,Medellin,0.346,0.392,0.284
+Planta Villahermosa (EVH),EVH,6.259,-75.548,B,A,1730,Medellin,3.713,3.887,1.432
+Tanque Vill Tina EPM (EVT),EVT,6.241,-75.541,B,I,1822,Medellin,1.567,2.01,1.017
+Facultad de Minas (FMI),FMI,6.275,-75.591,B,A,1537,Medellin,2.868,2.398,1.261
+ISA (ISA),ISA,6.262,-75.552,C,I,1730,Medellin,5.191,3.859,1.816
+Inspeccion San Joaquin (ISJ),ISJ,6.244,-75.587,B,A,1427,Medellin,3.47,3.618,1.456
+San Antonio de Prado (SAP),SAP,6.182,-75.665,RAM,I,2048,Medellin,3.713,3.887,1.432
+Liceo Universidad de Medellin (LIC),LIC,6.233,-75.543,B,A,1688,Medellin,4.299,3.788,1.238
+Colegio Padre Manyanet (MAN),MAN,6.219,-75.61,C,A,1605,Medellin,10.545,11.56,8.389
+Fundacion Amigo Policia (POL),POL,6.25,-75.612,C,A,1633,Medellin,1.345,1.829,0.675
+Fundacion Amigo Policia Prof (POL p),POL p,6.25,-75.612,C,I,1602,Medellin,0.346,0.392,0.284
+Seminario Mayor (SEM),SEM,6.222,-75.555,C,A,1877,Medellin,6.562,6.4,3.273
+Fundacion Solidaridad por Colombia (SOL),SOL,6.304,-75.555,C,A,1460,Medellin,3.629,2.383,2.001
+SENA Pedregal (SPE),SPE,6.302,-75.568,B,A,1499,Medellin,4.261,3.984,1.717
+Universidad de Medellin (UDM),UDM,6.231,-75.613,D,A,1595,Medellin,3.198,4.618,2.557
+Universidad EAFIT (UEA),UEA,6.199,-75.578,C,A,1518,Medellin,0.346,0.392,0.284
+Universidad Nacional (UNA),UNA,6.26,-75.575,C,A,1488,Medellin,1.543,1.437,1.02
+Caldas (CAL),CAL,6.092,-75.639,B,A,1700,Caldas,2.868,2.398,1.261
+La Estrella (EST),EST,6.159,-75.648,D,A,1650,La Estrella,3.198,4.618,2.557
+El Ancon Sur (ANC),ANC,6.149,-75.635,A,A,1600,Medellin,3.713,3.887,1.432
+Sabaneta (SAB),SAB,6.157,-75.61,B,A,1600,Sabaneta,3.47,3.618,1.456
+Itagui (ITA),ITA,6.164,-75.622,C,A,1611,Medellin,3.198,4.618,2.557
+Envigado (ENV),ENV,6.167,-75.566,C,A,1600,Envigado,3.713,3.887,1.432
+Bello (NIQ),NIQ,6.3432,-75.5421,D,I,1310,Bello,2.868,2.398,1.261
+Copacabana (COP),COP,6.345,-75.51,B,I,1450,Copacabana,3.198,4.618,2.557
+Girardota (GIR),GIR,6.374,-75.449,C,A,1400,Girardota,3.713,3.887,1.432
+La Tasajera (TAS),TAS,6.412,-75.429,A,A,1500,Girardota,3.47,3.618,1.456
+Barbosa (BAR),BAR,6.435,-75.327,D,A,1300,Barbosa,3.198,4.618,2.557
+SENA Centro (SCE),SCE,6.258,-75.578,C,I,1488,Medellin,1.543,1.437,1.02
+Planta Villahermosa Profunda (EVH p),EVH p,6.259,-75.548,B,I,1700,Medellin,2.713,2.887,1.01

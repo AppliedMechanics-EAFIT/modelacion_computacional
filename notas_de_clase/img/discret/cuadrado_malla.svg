@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="2.5in"
+   height="2.5in"
+   viewBox="0 0 225 224.99999"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="cuadrado_malla.svg">
+  <metadata
+     id="metadata40">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>cuadrado_malla</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     id="namedview38"
+     showgrid="false"
+     units="in"
+     inkscape:zoom="1.3891963"
+     inkscape:cx="328.07946"
+     inkscape:cy="91.302697"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g10" />
+  <title
+     id="title4">cuadrado_malla</title>
+  <desc
+     id="desc6">
+Creator: GL2PS 1.4.0, (C) 1999-2017 C. Geuzaine
+For: Gmsh
+CreationDate: Fri Sep 28 15:44:35 2018
+</desc>
+  <defs
+     id="defs8" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="Layer 1">
+    <g
+       id="g10"
+       transform="matrix(0.3729213,0,0,0.37291825,-31.464933,-64.910882)">
+      <g
+         id="g4335"
+         transform="translate(6.5464205,-4.7633624)">
+        <polygon
+           style="fill:#ececec;fill-opacity:1;stroke:#333333;stroke-width:2.68154192;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;shape-rendering:crispEdges"
+           id="polygon12"
+           points="108.429,751.571 650.571,751.571 379.5,480.5 " />
+        <polygon
+           style="fill:#ececec;fill-opacity:1;stroke:#333333;stroke-width:2.68154192;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;shape-rendering:crispEdges"
+           id="polygon14"
+           points="108.429,751.571 379.5,480.5 108.429,209.429 " />
+        <polygon
+           style="fill:#ececec;fill-opacity:1;stroke:#333333;stroke-width:2.68154192;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;shape-rendering:crispEdges"
+           id="polygon16"
+           points="650.571,751.571 650.571,209.429 379.5,480.5 " />
+        <polygon
+           style="fill:#ececec;fill-opacity:1;stroke:#333333;stroke-width:2.68154192;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;shape-rendering:crispEdges"
+           id="polygon18"
+           points="650.571,209.429 108.429,209.429 379.5,480.5 " />
+      </g>
+      <g
+         inkscape:label="Layer 1"
+         id="layer1-6"
+         transform="matrix(2.6815309,0,0,2.6815529,1203.2955,-1973.2721)">
+        <g
+           transform="translate(-4.3196233,161.51635)"
+           id="g4277">
+          <g
+             transform="matrix(1.7638889,0,0,1.7638889,-26.963473,-656.75723)"
+             id="g4248" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
