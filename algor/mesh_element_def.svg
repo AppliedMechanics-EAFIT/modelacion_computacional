@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="2in"
+   height="1in"
+   viewBox="0 0 180 90.000002"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="mesh_element_def.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.7518239"
+     inkscape:cx="86.499116"
+     inkscape:cy="89.158287"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="in"
+     inkscape:window-width="1920"
+     inkscape:window-height="1010"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-962.36215)">
+    <circle
+       style="fill:none;fill-opacity:1;stroke:#333333;stroke-width:1;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       id="path4144"
+       cx="35.999207"
+       cy="987.27551"
+       r="14.451482" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="31.095642"
+       y="992.74304"
+       id="text4136"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4138"
+         x="31.095642"
+         y="992.74304">1</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#333333;stroke-width:1;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4146"
+       width="85.75621"
+       height="25.627729"
+       x="84.382248"
+       y="974.71832" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="89.999573"
+       y="992.99243"
+       id="text4140"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4142"
+         x="89.999573"
+         y="992.99243"
+         style="letter-spacing:12.04999256px">8974</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="41.641911"
+       y="1018.6535"
+       id="text4148"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4150"
+         x="41.641911"
+         y="1018.6535"
+         style="font-size:11.25px;text-align:center;text-anchor:middle">Identificador</tspan><tspan
+         sodipodi:role="line"
+         x="41.641911"
+         y="1032.7161"
+         id="tspan4152"
+         style="font-size:11.25px;text-align:center;text-anchor:middle">del elemento</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="102.70818"
+       y="1018.6535"
+       id="text4148-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="102.70818"
+         y="1018.6535"
+         id="tspan4152-7"
+         style="font-size:11.25px">Nodos del</tspan><tspan
+         sodipodi:role="line"
+         x="102.70818"
+         y="1032.7161"
+         id="tspan4177"
+         style="font-size:11.25px">elemento</tspan></text>
+  </g>
+</svg>
