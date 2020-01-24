@@ -285,10 +285,6 @@ re-escribir las ecuaciones del numeral \textbf{4}.
 
 \end{enumerate}
 
-
-
-
-
 \section{Algoritmo de solución}
 
 En la solución del problema anterior se usaron planteamientos mecánicos para 
@@ -296,7 +292,7 @@ formular las ecuaciones de equilibrio del sistema de partículas. Consideremos
 ahora su solución de una manera sistemática de tal forma que el problema se 
 pueda codificar en un programa general de análisis estructural.
 
-\subsection{Equilibrio de los resortes}\hfill\break
+\subsection{Equilibrio de los resortes}
 
 Considere el siguiente sistema de 3 partículas, las cuales están conectadas por 
 resortes $i$ e $i+1$ con coeficientes de rigidez $K^i$ y $K^{i+1}$. De manera 
@@ -403,6 +399,269 @@ y
 
 Note la conexión entre los índices locales, correspondientes a $1$ y $2$, y las 
 posiciones en la matriz global, correspondientes a $j-1$, $j$ y $j+1$.
+
+
+\subsection{Ejemplo de ensamblaje}
+A continuación se muestra el paso a paso del ensamble de la matriz global de 
+rigidez para el sistema mostrado a continuación:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm]{sistema_resortes2.pdf}
+\end{figure}
+
+El primer paso a llevar a cabo es etiquetar los nodos (masas), y los elementos 
+(resortes) existentes en el sistema. Dichas etiquetas se muestran en la figura 
+a continuación:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm]{sistema_resortes2_etiquetas.pdf}
+\end{figure}
+donde los nodos se muestran en rojo, y se enumeran de 0 a 3, mientras que los 
+elementos se marcan en azul oscuro, con letras desde la A hasta la D. Note que 
+el empotramiento también se cuenta como nodo.
+
+El siguiente paso es extraer, a partir del sistema, las matrices IBC (en su 
+primera y segunda versión), y la matriz IELCON.
+
+Recordemos que la matriz IBC tiene tantas filas como nodos tiene el sistema (en 
+este caso tiene 4 nodos), y tantas columnas como grados de libertad tiene cada 
+nodo (en este caso cada nodo tiene 1 grado de libertad ya que solo se puede 
+mover horizontalmente). Y en cada posición de la matriz se pone -1 si el grado 
+de libertad de dicho nodo se encuentra restringido, y 0 en caso contrario. Con 
+todo lo anterior, la matriz IBC (al menos en su primera versión) es:
+$$IBC = 
+\begin{bmatrix}
+-1 \\ 
+0 \\
+0 \\
+0
+\end{bmatrix}\, ,
+$$
+esto quiere decir que el nodo 0 (fila 0 de la matriz) está empotrado, 
+mientras que los otros nodos están libres, tal como se muestra en la figura.
+
+La segunda versión de la matriz IBC consiste en enumerar los grados de libertad 
+que estén libres, es decir, aquellos con cero:
+$$IBC = 
+\begin{bmatrix}
+-1 \\
+0 \\
+1 \\
+2
+\end{bmatrix}
+$$
+
+Note que, de esta forma, cada grado de libertad queda asociado a un número 
+particular. Dicha segunda versión de la matriz IBC corresponde a la salida IBC 
+de la función \textit{eqcounter} de los Notebooks previamente mencionados.
+
+Por otra parte, armemos la matriz IELCON a partir del sistema en cuestión. En 
+este caso, la matriz tiene tantas filas como elementos tiene el sistema (en 
+este caso 4 elementos), y tiene tantas columnas como nodos asociados tenga cada 
+elemento. En el caso de los resortes a trabajar, se tienen 2 nodos asociados 
+(uno en cada punta).
+
+Con lo anterior, la matriz IELCON es la siguiente:
+$$IELCON = 
+\begin{bmatrix}
+1 & 3 \\
+2 & 3 \\
+1 & 2 \\
+2 & 0 
+\end{bmatrix}
+$$
+
+Note que la primera fila corresponde al elemento A, que conecta a los nodos 1 y 
+3, mientras que la segunda corresponde al elemento B, que une los nodos 2 y 3, 
+y así sucesivamente.
+
+A partir de las matrices IBC e IELCON, se construye la matriz DME. Para 
+entender esto, primero reconozcamos que cada nodo tiene un número asociado y 
+registrado en la matriz IBC. Entonces, para generar la matriz DME basta con 
+tomar la matriz IELCON e intercambiar los números de los nodos en esta, por los 
+números asociados a estos de acuerdo con la matriz IBC. 
+
+Es decir, en la matriz IELCON vamos a cambiar 0 por -1, 1 por 0, 2 por 1 y 3 
+por 2, así:
+$$DME = 
+\begin{bmatrix}
+0 & 2 \\
+1 & 2 \\
+0 & 1 \\
+1 & -1 
+\end{bmatrix}
+$$
+
+Note que esta matriz es la salida DME\_mat de la función \textit{DME} presente 
+en los notebooks.
+
+El siguiente paso es el ensamble de la matriz global de rigidez. Para esto, 
+primero recordemos que la matriz local para cada resorte está dada por:
+$$K^L = 
+\begin{bmatrix}
+K & -K \\
+-K & K 
+\end{bmatrix}\, ,
+$$
+donde dichas matrices son la salida de la función \textit{uelspring}.
+
+
+Siendo este el caso, procedemos a hacer el ensamble. Lo primero es reconocer 
+que, como queremos solucionar un sistema de la forma $ \{ F^G \} = [ K^G ] \{ 
+U^G \}\ $ , en el cual tenemos 3 incógnitas, la matriz global debe ser 3x3. En 
+principio, asumamos que tiene cero en todas sus casillas:
+$$K^G = 
+\begin{bmatrix}
+0 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & 0 
+\end{bmatrix}
+$$
+
+Ahora, para llenarla, tomaremos las matrices locales de cada elemento, e 
+indexaremos sus componentes en la matriz global de acuerdo a los índices que 
+marque la matriz DME en cada caso. Por ejemplo, el elemento A corresponde a la 
+primera fila de la matriz DME, y por tanto está asociado a los índices 0 y 2, a 
+partir de esto: 
+\[K^A =
+\left[\begin{array}{cc}
+2K &-2K\\
+-2K &2K\\
+\end{array}\right]
+\longrightarrow
+K^A =
+\begin{blockarray}{ccc}
+&\color{red}{0} &\color{red}{2}\\
+\begin{block}{c[cc]}
+\color{red}{0} &2K &-2K\\
+\color{red}{2} &-2K &2K\\
+\end{block}
+\end{blockarray}  ,\]
+con lo que es más claro observar que $2K$, ubicado en la primera fila y 
+primera columna de la matriz local, se ubica en la posición $(0,0)$ de la 
+matriz global:
+$$K^G = 
+\begin{bmatrix}
+2K & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & 0 
+\end{bmatrix}\, ,
+$$
+además el $-2K$ que se ubica en la posición local $(0,1)$ (primera fila y 
+segunda columna), se ubica en la posición $(0,2)$ de la matriz global:
+$$K^G = 
+\begin{bmatrix}
+2K & 0 & -2K \\
+0 & 0 & 0 \\
+0 & 0 & 0 
+\end{bmatrix}
+$$
+y, siguiendo el mismo procedimiento, se ensamblan las posiciones locales 
+$(1,0)$ y $(1,1)$ en las casillas $(0,2)$ y $(2,2)$, respectivamente:
+$$K^G = 
+\begin{bmatrix}
+2K & 0 & -2K \\
+0 & 0 & 0 \\
+-2K & 0 & 2K 
+\end{bmatrix}
+$$
+
+El mismo procedimiento se hace para los otros 3 elementos. Nótese que el 
+elemento B se asocia con los índices 1 y 2 (segunda fila de la matriz DME), y 
+de la misma forma C se asocia con 0 y 1, y D con 1 y -1, quedando:
+\begin{align*}
+K^B &= \begin{bmatrix}
+3K &-3K\\
+-3K &3K\\
+\end{bmatrix}
+&\longrightarrow&
+&K^B &=
+\begin{blockarray}{ccc}
+&\color{red}{1} &\color{red}{2}\\
+\begin{block}{c[cc]}
+\color{red}{1} &3K &-3K\\
+\color{red}{2} &-3K &3K\\
+\end{block}
+\end{blockarray}\, ,\\
+K^C &= \begin{bmatrix}
+K &-K\\
+-K &K\\
+\end{bmatrix}
+&\longrightarrow&
+&K^C &=
+\begin{blockarray}{ccc}
+&\color{red}{0} &\color{red}{1}\\
+\begin{block}{c[cc]}
+\color{red}{0} &K &-K\\
+\color{red}{1} &-K &K\\
+\end{block}
+\end{blockarray}\, ,\\
+K^D &= \begin{bmatrix}
+K &-K\\
+-K &K\\
+\end{bmatrix}
+&\longrightarrow&
+&K^D &=
+\begin{blockarray}{ccc}
+&\color{red}{1} &\color{red}{-1}\\
+\begin{block}{c[cc]}
+\color{red}{1} &K &-K\\
+\color{red}{-1} &-K &K\\
+\end{block}
+\end{blockarray}\, .
+\end{align*}
+
+Con estos índices claros, se procede a ensamblar el elemento B, quedando:
+$$K^G = 
+\begin{bmatrix}
+2K & 0 & -2K \\
+0 & 3K & -3K \\
+-2K & -3K & 5K 
+\end{bmatrix}\, 
+$$
+posteriormente el elemento C:
+$$K^G = 
+\begin{bmatrix}
+3K & -K & -2K \\
+-K & 4K & -3K \\
+-2K & -3K & 5K 
+\end{bmatrix}
+$$
+y finalmente el elemento D, notando que el índice -1 no está en la matriz 
+global, y por tanto dicha componente no se ensambla:
+$$K^G = 
+\begin{bmatrix}
+3K & -K & -2K \\
+-K & 5K & -3K \\
+-2K & -3K & 5K 
+\end{bmatrix}
+$$
+
+Esta matriz es la que representa la rigidez del sistema global.
+
+Solo queda faltando el vector de cargas, para este basta con observar las 
+cargas que se aplican sobre los grados de libertad del sistema. Se observa una 
+carga $P$ en el nodo 3, por lo que el vector queda: 
+$$F^G = 
+\begin{bmatrix}
+0 \\
+0 \\
+P
+\end{bmatrix}
+$$
+
+Con esto listo, solo falta darle valores a $K$ y a $P$ y solucionar el sistema  
+$ \{ F^G \} = [ K^G ] \{ U^G \}$ . Para $K = 1, P = 1$ se obtiene:
+$$U^G = 
+\begin{bmatrix}
+1.18 \\
+1 \\
+1.27
+\end{bmatrix}\, ,
+$$
+que se interpreta como que el grado de libertad 0 se desplazó $1.18$, el 
+grado de libertad 1 se desplazó $1$ y el grado de libertad 2 se desplazó 
+$1,27$.
 
 \section{Programa de análisis estructural}
 
