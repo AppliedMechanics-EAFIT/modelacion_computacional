@@ -2,7 +2,6 @@
 \usepackage[activeacute]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{babelbib}
-\usepackage{mathtools}
 \usepackage{amstext, amssymb, amsthm, amsmath, amsbsy}
 \usepackage{caption} % Modify caption format
 \usepackage{enumerate}
@@ -34,10 +33,11 @@
 \usepackage{mdframed}
 
 %% Referencias cruzadas e hipervinculos
-\usepackage{cleveref}
-\usepackage{hyperref}
 \usepackage{url}
 \usepackage{bookmark} % Bookmarks in PDF
+\usepackage{hyperref}
+\usepackage{cleveref}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,9 +65,8 @@
 	pdfstartview=FitH
 }
 
-\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 
-%\usemintedstyle{colorful}
+\usemintedstyle{colorful}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -81,6 +80,9 @@
 {C\nolinebreak[4]\hspace{-.05em}\raisebox{.22ex}{\footnotesize\bf ++}}
 
 %% Math commands
+
+% Ceil fun
+\newcommand{\ceil}[1]{\lceil {#1} \rceil}
 
 % Integrals
 \newcommand{\intL}{\int\limits}

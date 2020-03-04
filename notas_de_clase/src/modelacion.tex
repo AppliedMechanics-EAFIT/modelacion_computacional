@@ -129,48 +129,81 @@ La \cref{fig:euler_caida} presenta la solución por este método y la compara co
 \label{fig:euler_caida}
 \end{figure}
 
-\subsection{Vibración en una cuerda}
-En este ejemplo queremos estudiar la vibración en una cuerda con pequeñas amplitudes. Para ello, partimos de la ecuación de conservación del moméntum lineal (segunda ley de Newton). Asumiremos que la cuerda es homogénea y la tensión experimentada es la misma a lo largo de ella. Tomemos un elemento diferencial de la cuerda como se muestra en la siguiente figura.
-\begin{figure}[H] 
-\centering
-\includegraphics[height=8 cm]{cuerda.pdf}
-\caption{Fuerzas actuando sobre un elemento diferencial de una cuerda de longitud \(\Delta m\).}
-\label{fig:cuerda}
-\end{figure}
-
-Horizontalmente tenemos
-\begin{align*}
-&T_{1x} = T_1 \cos\alpha \approx T\\
-&T_{2x} = T_2 \cos\beta \approx T\, .
-\end{align*}
-
-Si los ángulos son pequeños las fuerzas horizontales son iguales y su sumatoria es cero. Verticalmente, tenemos entonces
-\[\sum F_y = T_{1y} - T_{2y} = - T_2\sin\beta + T_1\sin\alpha = \Delta m\, a \approx \mu \Delta x \pdv[2]{y}{t}\, ,\]
-en donde tomamos que la masa del elemento diferencial \(\Delta m = \mu \Delta x\), siendo \(\mu\) la densidad de masa por unidad de longitud. Si dividimos por \(T\) y remplazamos la primera ecuación  para \(T\), obtenemos
-\[\frac{\mu \Delta x}{T}\pdv[2]{y}{t} = -\frac{T_2 \sin\beta}{T_2\cos\beta} + \frac{T_1\sin\alpha}{T_1\cos\alpha} = -\tan\beta + \tan\alpha\, .\]
-
-Y sabemos que las tangentes de estos ángulos son iguales a las pendientes, es decir,
-\[\frac{1}{\Delta x}\left(\left.\pdv{y}{x}\right|_{x + \Delta x} - \left.\pdv{y}{x}\right|_{x}\right) = \frac{\mu}{T}\pdv[2]{y}{t}\, .\]
-
-En el límite \(\Delta x \rightarrow 0\), tenemos
-\[\pdv[2]{y(x, t)}{x} = \frac{1}{c^2}\pdv[2]{y(x, t)}{t}\, ,\]
-con \(c^2 = T/\mu\), la velocidad de propagación de la onda. Esta velocidad es directamente proporcional a la raíz cuadrada de la tensión en la cuerda e inversamente proporcional a la raíz cuadrada de la densidad lineal de masa.
-
-A este tipo de ecuaciones se le denomina ``ecuaciones en derivadas parciales'' porque ecuación incluye la incógnita, \(y(x, t)\), así como sus derivadas parciales. A fijar la cuerda en ambos extremos denominamos condiciones de frontera, y a conocer su configuración inicial (posición y velocidad) condiciones iniciales. Para este problema se cuenta con una solución analítica, sin embargo, usaremos una estrategia numérica llamada ``diferencias finitas''.
-
-Este método aproxima las derivadas por medio de \emph{diferencias} de la función en puntos adyacentes, y se asemeja a la definición de derivada usando el límite, es decir
-\[\pdv[2]{u(x, t)}{x} \approx \frac{u_{x + 1}^t - 2 u_x^t + u_{x-1}^t}{\Delta x^2}\, ,\]
-y
-\[\pdv[2]{u(x, t)}{t} \approx \frac{u_x^{t + 2} - 2 u_x^{t + 1} + u_x^t}{\Delta t^2}\, ,\]
-en donde los subíndices se refieren a una discretización en el espacio (\(x\)) y los superíndices se refieren a una discretización en el tiempo (\(t\)).
-
-Usando estas aproximaciones en la ecuación diferencial, tenemos
-\[\frac{y_{x + 1}^t - 2 y_x^t + y_{x-1}^t}{\Delta x^2} = \frac{1}{c^2}\left(\frac{y_x^{t + 1} - 2 y_x^t + y_x^{t - 1}}{\Delta t^2}\right)\, ,\]
-y despejando \(y_x^{t+1}\),
-\begin{equation}
-  y_x^{t + 2} = 2 y_x^{t + 1} - y_x^t + \frac{c^2 \Delta t^2}{\Delta x^2}\left[y_{x+1}^t - 2y_x^t + y_{x-1}^t\right]\, ,
-\end{equation}
-y podemos ver que tenemos una fórmula recursiva para obtener la solución en el tiempo \(t + 2\) a partir de la solución en dos tiempos anteriores.
-
-Esta fórmula no funciona para la primera iteración, pues requiere conocer la solución en un instante anterior al tiempo inicial (\(y_x^{-1}\)), sin embargo podemos usar la condición inicial para la primera derivada de \(y\) para obtener
-\[y_x^1 = y_x^0 - \Delta y'_x - \frac{1}{2}\frac{c^2 \Delta t^2}{\delta x^2}\left[y_{x+1}^0 - 2y_x^0 + y_{x-1}^0\right]\, .\]
+%\subsection{Vibración en una cuerda}
+%En este ejemplo queremos estudiar la vibración en una cuerda con pequeñas 
+%amplitudes. Para ello, partimos de la ecuación de conservación del moméntum 
+%lineal (segunda ley de Newton). Asumiremos que la cuerda es homogénea y la 
+%tensión experimentada es la misma a lo largo de ella. Tomemos un elemento 
+%diferencial de la cuerda como se muestra en la siguiente figura.
+%\begin{figure}[H] 
+%\centering
+%\includegraphics[height=8 cm]{cuerda.pdf}
+%\caption{Fuerzas actuando sobre un elemento diferencial de una cuerda de 
+%longitud \(\Delta m\).}
+%\label{fig:cuerda}
+%\end{figure}
+%
+%Horizontalmente tenemos
+%\begin{align*}
+%&T_{1x} = T_1 \cos\alpha \approx T\\
+%&T_{2x} = T_2 \cos\beta \approx T\, .
+%\end{align*}
+%
+%Si los ángulos son pequeños las fuerzas horizontales son iguales y su 
+%sumatoria es cero. Verticalmente, tenemos entonces
+%\[\sum F_y = T_{1y} - T_{2y} = - T_2\sin\beta + T_1\sin\alpha = \Delta m\, a 
+%\approx \mu \Delta x \pdv[2]{y}{t}\, ,\]
+%en donde tomamos que la masa del elemento diferencial \(\Delta m = \mu \Delta 
+%x\), siendo \(\mu\) la densidad de masa por unidad de longitud. Si dividimos 
+%por \(T\) y remplazamos la primera ecuación  para \(T\), obtenemos
+%\[\frac{\mu \Delta x}{T}\pdv[2]{y}{t} = -\frac{T_2 \sin\beta}{T_2\cos\beta} + 
+%\frac{T_1\sin\alpha}{T_1\cos\alpha} = -\tan\beta + \tan\alpha\, .\]
+%
+%Y sabemos que las tangentes de estos ángulos son iguales a las pendientes, es 
+%decir,
+%\[\frac{1}{\Delta x}\left(\left.\pdv{y}{x}\right|_{x + \Delta x} - 
+%\left.\pdv{y}{x}\right|_{x}\right) = \frac{\mu}{T}\pdv[2]{y}{t}\, .\]
+%
+%En el límite \(\Delta x \rightarrow 0\), tenemos
+%\[\pdv[2]{y(x, t)}{x} = \frac{1}{c^2}\pdv[2]{y(x, t)}{t}\, ,\]
+%con \(c^2 = T/\mu\), la velocidad de propagación de la onda. Esta velocidad es 
+%directamente proporcional a la raíz cuadrada de la tensión en la cuerda e 
+%inversamente proporcional a la raíz cuadrada de la densidad lineal de masa.
+%
+%A este tipo de ecuaciones se le denomina ``ecuaciones en derivadas parciales'' 
+%porque ecuación incluye la incógnita, \(y(x, t)\), así como sus derivadas 
+%parciales. A fijar la cuerda en ambos extremos denominamos condiciones de 
+%frontera, y a conocer su configuración inicial (posición y velocidad) 
+%condiciones iniciales. Para este problema se cuenta con una solución 
+%analítica, 
+%sin embargo, usaremos una estrategia numérica llamada ``diferencias finitas''.
+%
+%Este método aproxima las derivadas por medio de \emph{diferencias} de la 
+%función en puntos adyacentes, y se asemeja a la definición de derivada usando 
+%el límite, es decir
+%\[\pdv[2]{u(x, t)}{x} \approx \frac{u_{x + 1}^t - 2 u_x^t + u_{x-1}^t}{\Delta 
+%x^2}\, ,\]
+%y
+%\[\pdv[2]{u(x, t)}{t} \approx \frac{u_x^{t + 2} - 2 u_x^{t + 1} + 
+%u_x^t}{\Delta t^2}\, ,\]
+%en donde los subíndices se refieren a una discretización en el espacio (\(x\)) 
+%y los superíndices se refieren a una discretización en el tiempo (\(t\)).
+%
+%Usando estas aproximaciones en la ecuación diferencial, tenemos
+%\[\frac{y_{x + 1}^t - 2 y_x^t + y_{x-1}^t}{\Delta x^2} = 
+%\frac{1}{c^2}\left(\frac{y_x^{t + 1} - 2 y_x^t + y_x^{t - 1}}{\Delta 
+%t^2}\right)\, ,\]
+%y despejando \(y_x^{t+1}\),
+%\begin{equation}
+%  y_x^{t + 2} = 2 y_x^{t + 1} - y_x^t + \frac{c^2 \Delta t^2}{\Delta 
+%x^2}\left[y_{x+1}^t - 2y_x^t + y_{x-1}^t\right]\, ,
+%\end{equation}
+%y podemos ver que tenemos una fórmula recursiva para obtener la solución en el 
+%tiempo \(t + 2\) a partir de la solución en dos tiempos anteriores.
+%
+%Esta fórmula no funciona para la primera iteración, pues requiere conocer la 
+%solución en un instante anterior al tiempo inicial (\(y_x^{-1}\)), sin embargo 
+%podemos usar la condición inicial para la primera derivada de \(y\) para 
+%obtener
+%\[y_x^1 = y_x^0 - \Delta y'_x - \frac{1}{2}\frac{c^2 \Delta t^2}{\delta 
+%x^2}\left[y_{x+1}^0 - 2y_x^0 + y_{x-1}^0\right]\, .\]

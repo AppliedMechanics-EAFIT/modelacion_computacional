@@ -3,23 +3,59 @@
 \chapter{Introducción a los Elementos Finitos}
 \graphicspath{{img/FEM/}}
 
-La figura \ref{fig:chirajara} presenta el primer modo de pandeo para un pilón del puente Chirajara.
-\begin{figure}[H]
+\section{Presentación}
+
+Como se mencionó anteriormente, en la práctica se requiere de métodos numéricos
+para resolver las ecuaciones resultantes de un problema de interés. Por ejemplo,
+la figura \ref{fig:chirajara} presenta el primer modo de pandeo para un pilón 
+del puente Chirajara que se obtuvo usando el método de elementos finitos, 
+realizado por estudiantes de la materia en 2018 \cite{pandeo_chirajara}. Basados
+en este análisis los autores obtuvieron que la carga  crítica para el pilón
+es alrededor de 2.24 veces su peso, mientras que para una columna de sección 
+cuadrada y relación de aspecto de 10 la carga es alrededor de 370 veces su peso.
+\begin{figure}[h]
     \centering
     \includegraphics[width=6 cm]{pandeo_chirajara.png}
     \caption{Primer modo de pandeo para un pilón del puente Chirajara. Se 
     presenta la configuración deformada y la configuración original como 
-    referencia.}
+    referencia. La carga crítica para este pilón es alrededor de 2.24 veces
+    el peso de la estructura.}
     \label{fig:chirajara}
 \end{figure}
 
-\section{Introducción}
+\subsection{Introducción}
 
-El método de los elementos finitos es una técnica numérica para la solución de problemas de valores en la frontera propuesta inicialmente a finales de los 50 y principios de los 60  \cite{clough65, turner56}. Desde entonces, ha experimentado un fuerte desarrollo tecnológico y académico, plasmado en una gran cantidad de paquetes comerciales y de aplicaciones en diferentes áreas de ciencia e ingeniería. Paralelamente, se han escrito una gran cantidad de textos cubriendo aspectos teóricos relativos a la formulación y a la implementación del método \cite{book:bathe, book:hughes,  book:reddy, book:zienkiewicz}. En la actualidad el método de los elementos finitos puede considerarse como la herramienta de simulación numérica más poderosa y versátil para el estudio de problemas de ingeniería.
+El método de los elementos finitos es una técnica numérica para la solución de 
+problemas de valores en la frontera propuesta inicialmente a finales de los 50 
+y principios de los 60  \cite{clough65, turner56}. Desde entonces, ha 
+experimentado un fuerte desarrollo tecnológico y académico, plasmado en una 
+gran cantidad de paquetes comerciales y de aplicaciones en diferentes áreas de 
+ciencia e ingeniería. Paralelamente, se han escrito una gran cantidad de textos 
+cubriendo aspectos teóricos relativos a la formulación y a la implementación 
+del método \cite{book:bathe, book:hughes,  book:reddy, book:zienkiewicz}. En la 
+actualidad el método de los elementos finitos puede considerarse como la 
+herramienta de simulación numérica más poderosa y versátil para el estudio de 
+problemas de ingeniería. 
 
-Desde el punto de vista teórico el método se basa en la solución de la forma débil del problema de valores en la frontera sobre una discretización del dominio en elementos finitos en cada uno de los cuales se expresa la solución usando interpolación a partir de valores determinados para unos cuantos puntos o nodos. La contribución de cada elemento finito del dominio es posteriormente sumada usando leyes gobernantes entre las diferentes variables del problema. En el caso mecánico la forma débil del problema de valores en la frontera corresponde al principio de los desplazamientos virtuales y el ensamblaje o consideración de todos los elementos se construye a partir de condiciones de equilibrio y compatibilidad de desplazamientos.
+Desde el punto de vista teórico el método se basa en la solución de la forma 
+débil del problema de valores en la frontera sobre una discretización del 
+dominio en elementos finitos en cada uno de los cuales se expresa la solución 
+usando interpolación a partir de valores determinados para unos cuantos puntos 
+o nodos. La contribución de cada elemento finito del dominio es posteriormente 
+sumada usando leyes gobernantes entre las diferentes variables del problema. En 
+el caso mecánico la forma débil del problema de valores en la frontera 
+corresponde al principio de los desplazamientos virtuales y el ensamblaje o 
+consideración de todos los elementos se construye a partir de condiciones de 
+equilibrio y compatibilidad de desplazamientos. 
 
-En ingeniería civil el método de elementos finitos es aplicable en la simulación de problemas relativos a áreas como mecánica de fluidos, análisis dinámico de estructuras, mecánica de suelos, análisis de presas, o estructuras de contención. Algunos programas comerciales, específicamente desarrollados para uso en ingeniería civil son: Plaxis\footnote{\url{http://www.plaxis.nl/plaxis2d/}}, SAP2000\footnote{\url{https://www.csiamerica.com/products/sap2000}}, OpenSees\footnote{\url{http://opensees.berkeley.edu/wiki/index.php/Main_Page}}.
+En ingeniería civil el método de elementos finitos es aplicable en la 
+simulación de problemas relativos a áreas como mecánica de fluidos, análisis 
+dinámico de estructuras, mecánica de suelos, análisis de presas, o estructuras 
+de contención. Algunos programas comerciales, específicamente desarrollados 
+para uso en ingeniería civil son:  
+Plaxis\footnote{\url{http://www.plaxis.nl/plaxis2d/}}, 
+SAP2000\footnote{\url{https://www.csiamerica.com/products/sap2000}}, 
+OpenSees\footnote{\url{http://opensees.berkeley.edu/wiki/index.php/Main_Page}}.
 
 A pesar del gran desarrollo del método y de su amplio uso en oficinas de 
 ingeniería, especialmente en países desarrollados, este no es impartido en los 
@@ -51,8 +87,11 @@ El rango de aplicaciones de los elementos finitos es muy diverso, para brindar u
 El uso de análisis por elementos finitos de estructuras ha reducido los ciclos de diseño considerablemente y mejorado la calidad de los productos en general. 
 
 
-
 \section{Concepto intuitivo de rigidez}
+Uno de los aspectos fundamentales para el estudio del método de elementos
+finitos en problemas de mecánica es el de rigidez. A continuación se presenta
+de manera intuitiva este concepto.
+
 Considere los 2 modelos mostrados en la siguiente figura. El primero 
 corresponde a un resorte de constante $k$ el cual tras ser sometido a la acción 
 de una fuerza externa $F$ experimenta un cambio en su longitud igual a 
@@ -247,7 +286,7 @@ Se requiere:
 
 \item
 Plantear las ecuaciones de equilibrio para una partícula típica mostrada en 
-la figura \ref{fig:dcl_mass}. Asuma que la partícula esta conectada a un 
+la figura \ref{fig:dcl_masa}. Asuma que la partícula esta conectada a un 
 resorte $i$ por la izquierda y a un resorte $i+1$ por la derecha de manera que 
 el diagrama de cuerpo libre para la partícula es como el que se muestra en la 
 figura \ref{fig:dcl_masa}.
@@ -663,248 +702,260 @@ que se interpreta como que el grado de libertad 0 se desplazó $1.18$, el
 grado de libertad 1 se desplazó $1$ y el grado de libertad 2 se desplazó 
 $1,27$.
 
-\section{Programa de análisis estructural}
-
-De las secciones anteriores se concluye que el problema de equilibrio se 
-resuelve tras ensamblar la contribución de cada resorte (o triángulo) en una 
-matriz de rigidez global. En esta sección discutimos su solución en el 
-computador. Para definir el modelo usaremos archivos de texto en los cuales 
-indicaremos al programa las partículas que lo conforman, los resortes del 
-sistema y su conexión con las partículas, la localización de las cargas 
-externas y las propiedades de los resortes.
-
-Inicialmente se describen las rutinas o funciones que conforman el programa y 
-en la parte final estas son llamadas desde el programa principal.
-
-El programa principal ejecuta los siguientes pasos:
-
-\begin{itemize}
-    \item Lee el modelo.
-    \item Calcula la matriz  \textit{DME}.
-    \item Ensambla el sistema global de ecuaciones.
-    \item Resuelve el sistema para determinar los desplazamientos globales $UG$.
-\end{itemize}
-
-Los archivos de texto con los datos de entrada de las partículas, elementos, 
-coeficientes de rigidez y cargas de este problema se presentan a continuación. 
-Se aclara que al momento de ejecutar los códigos que se presentan más adelante, 
-se debe tener en la misma carpeta donde estos se encuentren, otra carpeta 
-llamada \textit{files}, que contenga dichos archivos de texto.
-
-\begin{table}[H]
-    \begin{tabular}{ccc}
-        0 & 0.000 & -1 \\
-        1 & 1.000 & 0  \\
-        2 & 2.000 & 0  \\
-        3 & 3.000 & 0 
-    \end{tabular}
-    \caption{Archivo de texto \textit{sprnodes.txt}}
-\end{table}
-
-\begin{table}[H]
-    \begin{tabular}{cccll}
-        0 & 5 & 1 & 0 & 1 \\
-        1 & 5 & 1 & 1 & 2 \\
-        2 & 5 & 1 & 1 & 2 \\
-        3 & 5 & 1 & 2 & 3
-    \end{tabular}
-    \caption{Archivo de texto \textit{spreles.txt}}
-\end{table}
-
-
-\begin{table}[H]
-    \begin{tabular}{cc}
-        1 & -1 \\
-        2 & 1  \\
-        3 & 2 
-    \end{tabular}
-    \caption{Archivo de texto \textit{sprloads.txt}, asumiendo que $P = 1$N.}
-\end{table}
-
-\begin{table}[H]
-    \begin{tabular}{c}
-        1000.0 \\
-        1000.0
-    \end{tabular}
-    \caption{Archivo de texto \textit{sprmater.txt}, asumiendo que $k = 
-    1000$N/m.}
-\end{table}
-
-
-La rutina \textit{readin()} lee los archivos de entrada que se encuentran en la 
-carpeta \textit{files} y que deben ser almacenados localmente bajo esta misma 
-estructura.
-
-\begin{minted}[mathescape]{python}
-def readin():
-    nodes = np.loadtxt('files/sprnodes.txt', ndmin=2)
-    mats = np.loadtxt('files/sprmater.txt', ndmin=2)
-    elements = np.loadtxt('files/spreles.txt' , ndmin=2, dtype=np.int)
-    loads = np.loadtxt('files/sprloads.txt', ndmin=2)
-    return nodes, mats, elements, loads
-\end{minted}
-
-
-En el archivo de nodos, en el cual se almacena la información de cada 
-partícula, hay un código con valor $-1$ o $0$ indicando si la partícula se 
-encuentra restringida (como en el empotramiento) o libre. Con esa información 
-la rutina \texttt{eqcounter()} asigna identificadores de grados de libertad o 
-números de ecuaciones a cada una de las partículas declaradas como libres.
-
-\begin{minted}[mathescape]{python}
-def eqcounter(nodes):
-    nn = nodes.shape[0]
-    IBC = np.zeros((nn, 1), dtype=np.integer)
-    neq = 0
-    for cont in range(nn):
-    IBC[cont] = int(nodes[cont, 2])
-    if IBC[cont] == 0:
-    IBC[cont] = neq
-    neq = neq + 1
-    return neq, IBC
-\end{minted}
-
-El numero de ecuación asignado a cada partícula es usado ahora para formar la 
-matriz \textit{DME}. Cada fila de esta matriz contiene los identificadores de 
-los desplazamientos de los extremos del resorte.
-
-\begin{minted}[mathescape]{python}
-def DME(nodes, elements):
-    nels = elements.shape[0]
-    DME_mat = np.zeros((nels, 2), dtype=np.integer)
-    neq, IBC = eqcounter(nodes)
-    ndof = 2
-    nnodes = 2
-    for ele in range(nels):
-    for node in range(nnodes):
-    pos = elements[ele, node + 3]
-    DME_mat[ele, node] = IBC[pos]
-    return DME_mat, IBC, neq
-\end{minted}
-
-Usando la matriz \textit{DME} es posible ensamblar la matriz global de 
-coeficientes de rigidez en términos de ecuaciones como:
-$$
-K_{j - 1,j - 1} \leftarrow K_{j - 1,j - 1} + k_{11}^i\, .\\
-$$
-
-\begin{minted}[mathescape]{python}
-def assembly(elements, mats, nodes, neq, DME_mat):
-    IELCON = np.zeros([2], dtype=np.integer)
-    KG = np.zeros((neq, neq))
-    nels = elements.shape[0]
-    nnodes = 2
-    ndof = 2
-    for el in range(nels):
-        elcoor = np.zeros((nnodes))
-        im = np.int(elements[el, 2])
-        par = mats[im]
-        for j in range(nnodes):
-            IELCON[j] = elements[el, j+3]
-            elcoor[j] = nodes[IELCON[j], 1]
-            kloc = uelspring(par[0])
-            dme = DME_mat[el, :ndof]
-            for row in range(ndof):
-                glob_row = dme[row]
-                if glob_row != -1:
-                    for col in range(ndof):
-                        glob_col = dme[col]
-                    if glob_col != -1:
-                        KG[glob_row, glob_col] = KG[glob_row, glob_col] + 
-                        kloc[row, col]
-    
-    return KG
-\end{minted}
-
-La función \textit{uelspring} calcula la matriz de rigidez de un resorte 
-típico, mientras que la función \textit{loadassem} ensambla el vector de cargas 
-externas aplicadas sobre las partículas.
-
-\begin{minted}[mathescape]{python}
-def uelspring(kcof):
-    """
-    Calcula la matriz de rigidez para
-    un elemento tipo resorte conformado por 2 nodos.
-    
-    Parametros
-    ----------
-    kcof : float
-    Coeficiente de rigidez del resorte (>0).
-    
-    Retorna
-    -------
-    kloc : ndarray
-    Matriz de coeficientes de rigidez local para
-    el elemento tipo resorte (2, 2).
-    
-    
-    """
-    kloc = np.array([
-        [kcof, -kcof],
-        [-kcof, kcof]])
-    return kloc
-\end{minted}
-
-\begin{minted}[mathescape]{python}
-def loadasem(loads, IBC, neq, nl):
-    """
-    Ensambla el vector de cargas o de valores conocidos
-    en el sistema global de ecuaciones.
-    
-    Parametros
-    ----------
-    loads : ndarray
-    Arreglo con las cargas impuestas a las particulas.
-    IBC : ndarray (int)
-    Arreglo que almacena el identificador de grado de libertad
-    a cada particula.
-    neq : int
-    Numero de ecuaciones en el sistema.
-    nl : int
-    Numero de cargas en el sistema.
-    
-    Retorna
-    -------
-    rhs_glob : ndarray
-    Arreglo con las cargas impuestas a las particulas,
-    rhs se refiere a lado derecho (del ingles right-hand-side).
-    
-    """
-    rhs_glob = np.zeros((neq))
-    for cont in range(nl):
-        il = int(loads[cont, 0])
-        ilx = IBC[il]
-        if ilx != -1:
-            rhs_glob[ilx] = loads[cont, 1]
-    return rhs_glob
-\end{minted}
-
-
-\subsection{Programa principal}
-
-\begin{minted}[mathescape]{python}
-import numpy as np
-
-nodes, mats, elements, loads = readin()
-DME, IBC, neq = DME(nodes, elements)
-KG = assembly(elements, mats, nodes, neq, DME)
-RHSG = loadasem(loads, IBC, neq, 3)
-UG = np.linalg.solve(KG, RHSG)
-print(UG)
-\end{minted}
-
-El programa arroja como resultado
-$[0.002 , 0.0035 ,  0.0045]$
-que corresponde a los desplazamientos de los nodos 1,2 y 3.
-
-
+%\section{Programa de análisis estructural}
+%
+%De las secciones anteriores se concluye que el problema de equilibrio se 
+%resuelve tras ensamblar la contribución de cada resorte (o triángulo) en una 
+%matriz de rigidez global. En esta sección discutimos su solución en el 
+%computador. Para definir el modelo usaremos archivos de texto en los cuales 
+%indicaremos al programa las partículas que lo conforman, los resortes del 
+%sistema y su conexión con las partículas, la localización de las cargas 
+%externas y las propiedades de los resortes.
+%
+%Inicialmente se describen las rutinas o funciones que conforman el programa y 
+%en la parte final estas son llamadas desde el programa principal.
+%
+%El programa principal ejecuta los siguientes pasos:
+%
+%\begin{itemize}
+%    \item Lee el modelo.
+%    \item Calcula la matriz  \textit{DME}.
+%    \item Ensambla el sistema global de ecuaciones.
+%    \item Resuelve el sistema para determinar los desplazamientos globales 
+%$UG$.
+%\end{itemize}
+%
+%Los archivos de texto con los datos de entrada de las partículas, elementos, 
+%coeficientes de rigidez y cargas de este problema se presentan a continuación. 
+%Se aclara que al momento de ejecutar los códigos que se presentan más 
+%adelante, 
+%se debe tener en la misma carpeta donde estos se encuentren, otra carpeta 
+%llamada \textit{files}, que contenga dichos archivos de texto.
+%
+%\begin{table}[H]
+%    \begin{tabular}{ccc}
+%        0 & 0.000 & -1 \\
+%        1 & 1.000 & 0  \\
+%        2 & 2.000 & 0  \\
+%        3 & 3.000 & 0 
+%    \end{tabular}
+%    \caption{Archivo de texto \textit{sprnodes.txt}}
+%\end{table}
+%
+%\begin{table}[H]
+%    \begin{tabular}{cccll}
+%        0 & 5 & 1 & 0 & 1 \\
+%        1 & 5 & 1 & 1 & 2 \\
+%        2 & 5 & 1 & 1 & 2 \\
+%        3 & 5 & 1 & 2 & 3
+%    \end{tabular}
+%    \caption{Archivo de texto \textit{spreles.txt}}
+%\end{table}
+%
+%
+%\begin{table}[H]
+%    \begin{tabular}{cc}
+%        1 & -1 \\
+%        2 & 1  \\
+%        3 & 2 
+%    \end{tabular}
+%    \caption{Archivo de texto \textit{sprloads.txt}, asumiendo que $P = 1$N.}
+%\end{table}
+%
+%\begin{table}[H]
+%    \begin{tabular}{c}
+%        1000.0 \\
+%        1000.0
+%    \end{tabular}
+%    \caption{Archivo de texto \textit{sprmater.txt}, asumiendo que $k = 
+%    1000$N/m.}
+%\end{table}
+%
+%
+%La rutina \textit{readin()} lee los archivos de entrada que se encuentran en 
+%la 
+%carpeta \textit{files} y que deben ser almacenados localmente bajo esta misma 
+%estructura.
+%
+%\begin{minted}[mathescape]{python}
+%def readin():
+%    nodes = np.loadtxt('files/sprnodes.txt', ndmin=2)
+%    mats = np.loadtxt('files/sprmater.txt', ndmin=2)
+%    elements = np.loadtxt('files/spreles.txt' , ndmin=2, dtype=np.int)
+%    loads = np.loadtxt('files/sprloads.txt', ndmin=2)
+%    return nodes, mats, elements, loads
+%\end{minted}
+%
+%
+%En el archivo de nodos, en el cual se almacena la información de cada 
+%partícula, hay un código con valor $-1$ o $0$ indicando si la partícula se 
+%encuentra restringida (como en el empotramiento) o libre. Con esa información 
+%la rutina \texttt{eqcounter()} asigna identificadores de grados de libertad o 
+%números de ecuaciones a cada una de las partículas declaradas como libres.
+%
+%\begin{minted}[mathescape]{python}
+%def eqcounter(nodes):
+%    nn = nodes.shape[0]
+%    IBC = np.zeros((nn, 1), dtype=np.integer)
+%    neq = 0
+%    for cont in range(nn):
+%    IBC[cont] = int(nodes[cont, 2])
+%    if IBC[cont] == 0:
+%    IBC[cont] = neq
+%    neq = neq + 1
+%    return neq, IBC
+%\end{minted}
+%
+%El numero de ecuación asignado a cada partícula es usado ahora para formar la 
+%matriz \textit{DME}. Cada fila de esta matriz contiene los identificadores de 
+%los desplazamientos de los extremos del resorte.
+%
+%\begin{minted}[mathescape]{python}
+%def DME(nodes, elements):
+%    nels = elements.shape[0]
+%    DME_mat = np.zeros((nels, 2), dtype=np.integer)
+%    neq, IBC = eqcounter(nodes)
+%    ndof = 2
+%    nnodes = 2
+%    for ele in range(nels):
+%    for node in range(nnodes):
+%    pos = elements[ele, node + 3]
+%    DME_mat[ele, node] = IBC[pos]
+%    return DME_mat, IBC, neq
+%\end{minted}
+%
+%Usando la matriz \textit{DME} es posible ensamblar la matriz global de 
+%coeficientes de rigidez en términos de ecuaciones como:
+%$$
+%K_{j - 1,j - 1} \leftarrow K_{j - 1,j - 1} + k_{11}^i\, .\\
+%$$
+%
+%\begin{minted}[mathescape]{python}
+%def assembly(elements, mats, nodes, neq, DME_mat):
+%    IELCON = np.zeros([2], dtype=np.integer)
+%    KG = np.zeros((neq, neq))
+%    nels = elements.shape[0]
+%    nnodes = 2
+%    ndof = 2
+%    for el in range(nels):
+%        elcoor = np.zeros((nnodes))
+%        im = np.int(elements[el, 2])
+%        par = mats[im]
+%        for j in range(nnodes):
+%            IELCON[j] = elements[el, j+3]
+%            elcoor[j] = nodes[IELCON[j], 1]
+%            kloc = uelspring(par[0])
+%            dme = DME_mat[el, :ndof]
+%            for row in range(ndof):
+%                glob_row = dme[row]
+%                if glob_row != -1:
+%                    for col in range(ndof):
+%                        glob_col = dme[col]
+%                    if glob_col != -1:
+%                        KG[glob_row, glob_col] = KG[glob_row, glob_col] + 
+%                        kloc[row, col]
+%    
+%    return KG
+%\end{minted}
+%
+%La función \textit{uelspring} calcula la matriz de rigidez de un resorte 
+%típico, mientras que la función \textit{loadassem} ensambla el vector de 
+%cargas 
+%externas aplicadas sobre las partículas.
+%
+%\begin{minted}[mathescape]{python}
+%def uelspring(kcof):
+%    """
+%    Calcula la matriz de rigidez para
+%    un elemento tipo resorte conformado por 2 nodos.
+%    
+%    Parametros
+%    ----------
+%    kcof : float
+%    Coeficiente de rigidez del resorte (>0).
+%    
+%    Retorna
+%    -------
+%    kloc : ndarray
+%    Matriz de coeficientes de rigidez local para
+%    el elemento tipo resorte (2, 2).
+%    
+%    
+%    """
+%    kloc = np.array([
+%        [kcof, -kcof],
+%        [-kcof, kcof]])
+%    return kloc
+%\end{minted}
+%
+%\begin{minted}[mathescape]{python}
+%def loadasem(loads, IBC, neq, nl):
+%    """
+%    Ensambla el vector de cargas o de valores conocidos
+%    en el sistema global de ecuaciones.
+%    
+%    Parametros
+%    ----------
+%    loads : ndarray
+%    Arreglo con las cargas impuestas a las particulas.
+%    IBC : ndarray (int)
+%    Arreglo que almacena el identificador de grado de libertad
+%    a cada particula.
+%    neq : int
+%    Numero de ecuaciones en el sistema.
+%    nl : int
+%    Numero de cargas en el sistema.
+%    
+%    Retorna
+%    -------
+%    rhs_glob : ndarray
+%    Arreglo con las cargas impuestas a las particulas,
+%    rhs se refiere a lado derecho (del ingles right-hand-side).
+%    
+%    """
+%    rhs_glob = np.zeros((neq))
+%    for cont in range(nl):
+%        il = int(loads[cont, 0])
+%        ilx = IBC[il]
+%        if ilx != -1:
+%            rhs_glob[ilx] = loads[cont, 1]
+%    return rhs_glob
+%\end{minted}
+%
+%
+%\subsection{Programa principal}
+%
+%\begin{minted}[mathescape]{python}
+%import numpy as np
+%
+%nodes, mats, elements, loads = readin()
+%DME, IBC, neq = DME(nodes, elements)
+%KG = assembly(elements, mats, nodes, neq, DME)
+%RHSG = loadasem(loads, IBC, neq, 3)
+%UG = np.linalg.solve(KG, RHSG)
+%print(UG)
+%\end{minted}
+%
+%El programa arroja como resultado
+%$[0.002 , 0.0035 ,  0.0045]$
+%que corresponde a los desplazamientos de los nodos 1,2 y 3.
 
 
 %% Aspectos a tener en cuenta
-\section{Aspectos a tener en cuenta}
+\section{Algunos aspectos a tener en cuenta}
 
 \subsection{Unidades}
-La mayoría de programas de elementos finitos o simulaciones en general no cuentan con un sistema de unidades interno. Por tanto, la responsabilidad de que las unidades sean consistentes es del analista\footnote{Algunos programas sí tienen un manejo interno de las unidades. Una lista que compara algunas características está disponible en \url{www.feacompare.com}.}. Dependiendo del problema de interés, un sistema de unidades puede ser más práctico que otro\footnote{Una buena práctica es la de llevar las ecuaciones a grupos no dimensionales, ya que esto usualmente reduce la cantidad de variables independientes \cite{book:langtangen2016scaling}.}. El \cref{tab:sistema_unidades} presenta algunas cantidades y las unidades usadas para 4 sistemas consistentes de unidades.
+La mayoría de programas de elementos finitos o simulaciones en general no 
+cuentan con un sistema de unidades interno. Por tanto, la responsabilidad de 
+que las unidades sean consistentes es del analista\footnote{Algunos programas 
+sí tienen un manejo interno de las unidades. Una lista que compara algunas 
+características está disponible en \url{www.feacompare.com}.}. Dependiendo del 
+problema de interés, un sistema de unidades puede ser más práctico que 
+otro\footnote{Una buena práctica es la de llevar las ecuaciones a grupos no 
+dimensionales, ya que esto usualmente reduce la cantidad de variables 
+independientes \cite{book:langtangen2016scaling}.}. La tabla
+\ref{tab:sistema_unidades} presenta algunas cantidades y las unidades usadas 
+para 4 sistemas consistentes de unidades.
 \begin{table}[H]
 \centering
 \begin{tabular}{lcccc}
@@ -937,12 +988,25 @@ Los siguientes cuadros presentan los valores del módulo de Young y densidad par
 \textbf{Material} & \textbf{SI}  & \textbf{SI} & \textbf{EEUU} & \textbf{EEUU} \\
    & \textbf{(Pa)}  & \textbf{(MPa)} & \textbf{(lbf/ft$^2$)} & \textbf{(psi)} \\ 
 \hline
-Acero   &$200\times 10^9$ &$200\times 10^3$ &$30\times 10^6$ &$4.32\times 10^9$\\
+Acero   &$200\times 10^9$ &$200\times 10^3$ &$30\times 10^6$ &$4.32\times 
+10^9$\\
+Adobe & $20 \times 10^9$ &$20 \times 10^3$ &$2.91 \times 10^6$ &$0.42 \times 
+10^9$ \\
 Aluminio &$70\times 10^9$ &$70 \times 10^3$ &$10.2 \times 10^6$ &$1.46 \times 10^9$\\
-Concreto & $30\times 10^9$ &$30\times 10^3$ &$648\times 10^6$ &$4.50\times 10^6$\\
+Concreto & $30\times 10^9$ &$30\times 10^3$ &$4.5\times 10^6$ &$0.65\times 
+10^9$\\
+Madera (paralelo) & $13\times 10^9$ &$13\times 10^3$ &$1.95\times 10^6$ 
+&$0.28\times 10^9$\\
+Madera (perpendicular) & $1.8\times 10^9$ &$1.8\times 10^3$ &$0.27\times 10^6$ 
+&$0.039\times 10^9$\\
+Fibra de vidrio & $22\times 10^9$ &$22\times 10^3$ &$3.3\times 10^6$ 
+&$2.54\times 10^9$\\
 \hline 
 \end{tabular}
-\caption{Valores de módulo de Young para algunos materiales en diferentes sistemas de unidades.}
+\caption{Valores aproximados del módulo de Young para algunos materiales en 
+diferentes sistemas de unidades. Para la madera, paralelo se refiere a las 
+propiedades medidas alineadas con la fibra y perpendicular a las propiedades
+medidas a través de ella.}
 \end{table}
 \begin{table}[h]
 \centering
@@ -952,56 +1016,68 @@ Concreto & $30\times 10^9$ &$30\times 10^3$ &$648\times 10^6$ &$4.50\times 10^6$
  & \textbf{(kg/m$^3$)}  & \textbf{(kg/mm$^3$)} & \textbf{(slug/ft$^3$)} & \textbf{(lbf s$^2$/in$^4$)} \\ 
 \hline
 Acero   &$7800$ &$7.8 \times 10^{-6}$ &$15.2$ &$0.28$\\
+Adobe   &$2000$ &$2.0 \times 10^{-6}$ &$3.89$ &$0.072$\\
 Aluminio &$2700$ &$2.7 \times 10^{-6}$ &$5.24$ &$0.098$\\
 Concreto & $2380$ &$2.38 \times 10^{-6}$ &$4.61$ &$0.086$\\
+Madera   &$600$ &$0.6 \times 10^{-6}$ &$1.17$ &$0.024$\\ 
+Fibra de vidrio  &$1850$ &$1.85 \times 10^{-6}$ &$3.60$ &$0.074$\\
 \hline 
 \end{tabular}
-\caption{Valores de densidad para algunos materiales en diferentes sistemas de unidades.}
+\caption{Valores aproximados de densidad para algunos materiales en diferentes 
+sistemas de unidades.}
 \end{table}
 
 
-
-\section{Geometría}
-
-\subsection{Simplificación de la geometría}
-Toda modelación que se haga de un sistema implica una idealización. Esta idealización incluye una simplificación de la geometría, es decir, despreciar algunos detalles que puedan ser de menor importancia para la estructura. Saber cuáles detalles incluir y cuáles no, no es una tarea trivial y en general dependerá de la aplicación y experiencia del analista.
-
-Un aspecto que facilita la idealización de la geometría es la presencia de simetrías. La \cref{fig:simetrias} muestra algunos tipos de simetría que son comunes. Hay que tener en cuenta que una simetría en la geometría no necesariamente implica una simetría en la solución del problema, para ello es necesario que las condiciones de carga también sean simétricas.
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[b]{0.49\textwidth}
-    \centering
-	\includegraphics[height=4cm]{mirror_symmetry.pdf}
-	\caption{Simetría bilateral.}
-	\end{subfigure}
-    \begin{subfigure}[b]{0.49\textwidth}
-    \centering
-	\includegraphics[height=4cm]{axial_symmetry.pdf}
-	\caption{Simetría rotacional.}
-	\end{subfigure}\\	
-	\begin{subfigure}[b]{0.49\textwidth}
-	\centering
-	\includegraphics[height=4cm]{cyclic_symmetry.pdf}
-	\caption{Simetría cíclica.}
-	\end{subfigure}
-    \begin{subfigure}[b]{0.49\textwidth}
-    \centering
-	\includegraphics[height=4cm]{cyclic-mirror_symmetry.pdf}
-	\caption{Simetría cíclica/bilateral.}
-	\end{subfigure}\\
-    \begin{subfigure}[b]{\textwidth}
-    \centering
-	\includegraphics[height=3cm]{repetitive_symmetry.pdf}
-	\caption{Simetría repetitiva.}
-	\end{subfigure}\\
-    \begin{subfigure}[b]{\textwidth}
-    \centering
-	\includegraphics[height=2.5cm]{repetitive-mirror_symmetry.pdf}
-	\caption{Simetría repetitiva/bilateral.}
-	\end{subfigure}
-    \caption{Tipos de simetrías en diferentes geometrías \cite{how_to_FEM}.}
-    \label{fig:simetrias}
-\end{figure}
+%
+%\section{Geometría}
+%
+%\subsection{Simplificación de la geometría}
+%Toda modelación que se haga de un sistema implica una idealización. Esta 
+%idealización incluye una simplificación de la geometría, es decir, despreciar 
+%algunos detalles que puedan ser de menor importancia para la estructura. Saber 
+%cuáles detalles incluir y cuáles no, no es una tarea trivial y en general 
+%dependerá de la aplicación y experiencia del analista.
+%
+%Un aspecto que facilita la idealización de la geometría es la presencia de 
+%simetrías. La figura \ref{fig:simetrias} muestra algunos tipos de simetría que 
+%son comunes. Hay que tener en cuenta que una simetría en la geometría no 
+%necesariamente implica una simetría en la solución del problema, para ello es 
+%necesario que las condiciones de carga también sean simétricas.
+%\begin{figure}[H]
+%    \centering
+%    \begin{subfigure}[b]{0.49\textwidth}
+%    \centering
+%	\includegraphics[height=4cm]{mirror_symmetry.pdf}
+%	\caption{Simetría bilateral.}
+%	\end{subfigure}
+%    \begin{subfigure}[b]{0.49\textwidth}
+%    \centering
+%	\includegraphics[height=4cm]{axial_symmetry.pdf}
+%	\caption{Simetría rotacional.}
+%	\end{subfigure}\\	
+%	\begin{subfigure}[b]{0.49\textwidth}
+%	\centering
+%	\includegraphics[height=4cm]{cyclic_symmetry.pdf}
+%	\caption{Simetría cíclica.}
+%	\end{subfigure}
+%    \begin{subfigure}[b]{0.49\textwidth}
+%    \centering
+%	\includegraphics[height=4cm]{cyclic-mirror_symmetry.pdf}
+%	\caption{Simetría cíclica/bilateral.}
+%	\end{subfigure}\\
+%    \begin{subfigure}[b]{\textwidth}
+%    \centering
+%	\includegraphics[height=3cm]{repetitive_symmetry.pdf}
+%	\caption{Simetría repetitiva.}
+%	\end{subfigure}\\
+%    \begin{subfigure}[b]{\textwidth}
+%    \centering
+%	\includegraphics[height=2.5cm]{repetitive-mirror_symmetry.pdf}
+%	\caption{Simetría repetitiva/bilateral.}
+%	\end{subfigure}
+%    \caption{Tipos de simetrías en diferentes geometrías \cite{how_to_FEM}.}
+%    \label{fig:simetrias}
+%\end{figure}
 
 %%% Ejemplo con SolidsPy
 
