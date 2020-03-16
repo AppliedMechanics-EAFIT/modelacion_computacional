@@ -48,7 +48,7 @@ A continuación se presentan las actividades disponibles.
 
         2. [Cambio de coordenadas para elementos tipo cercha](https://nbviewer.jupyter.org/github/AppliedMechanics-EAFIT/modelacion_computacional/blob/master/notebooks/07b_cerchas_cambio_coordenadas.ipynb)
 
-    3. [Elementos tipo pórtico](https://nbviewer.jupyter.org/github/AppliedMechanics-EAFIT/modelacion_computacional/blob/master/notebooks/08_pórticos.ipynb)
+    3. [Elementos tipo pórtico](https://nbviewer.jupyter.org/github/AppliedMechanics-EAFIT/modelacion_computacional/blob/master/notebooks/08_porticos.ipynb)
 
     4. [Ejemplo de aplicación: Cercha de von Mises](https://nbviewer.jupyter.org/github/AppliedMechanics-EAFIT/modelacion_computacional/blob/master/notebooks/09_cercha_mises.ipynb)
 
