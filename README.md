@@ -2,21 +2,23 @@
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AppliedMechanics-EAFIT/modelacion_computacional/e580ec592b6bd6671bfc06344dec9b8b92435f62)
 
-# Introducción
-Este repositorio contiene recursos de aprendizaje para el curso **Modelación Computacional** dictado a estudiantes de segundo año (4to semestre) del programa de Ingeniería Civil de la Universidad EAFIT. El curso cubre aspectos básicos de uso de herramientas computacionales, algunos métodos numéricos fundamentales y elementos comunes a la simulación numérica de problemas asociados con fenoménos mecánicos (v-gr., mecánica de sólidos, mecánica de los medios continuos, análisis estructural, elementos finitos, etc). El curso utiliza Python como lenguaje de programación así como herramientas de uso libre disponibles en línea. En lo que sigue se presentan instrucciones para descargar o clonar el repositorio. Adicionalmente, usando la opción de binder permite la ejecución de los Notebooks aún sin tener una instalación de Python o Jupyter en el computador de trabajo.
+## Introducción
+Este repositorio contiene recursos de aprendizaje para el curso **Modelación Computacional** dictado a estudiantes de segundo año (4to semestre) del programa de Ingeniería Civil de la Universidad EAFIT. El curso cubre aspectos básicos de uso de herramientas computacionales, algunos métodos numéricos fundamentales y elementos comunes a la simulación numérica de problemas asociados con fenoménos mecánicos (v-gr., mecánica de sólidos, mecánica de los medios continuos, análisis estructural, elementos finitos, etc). El curso utiliza Python como lenguaje de programación así como herramientas de uso libre disponibles en línea. En lo que sigue se presentan instrucciones para descargar o clonar el repositorio. Adicionalmente, usando la opción de binder es posible ejecutar los Notebooks aún sin tener una instalación de Python o Jupyter en el computador de trabajo.
 
-## Contenido
+## Aprendizaje activo
 
-- Notas de clase, con los archivos fuente y el documento en
+En un alto porcentaje de este curso se utilizan estrategias pedagogícas de aprendizaje activo, particularmente en algunas de las sesiones se seguirá una metodología de aula inversa. En esta se otorga una mayor responsabilidad al estudiante durante el proceso de aprendizaje. Para desarrollar este proceso se han desarrollado los siguientes recursos:
+
+* **Notas de clase:** con los archivos fuente y el documento en
   [pdf](https://github.com/AppliedMechanics-EAFIT/modelacion_computacional/raw/master/notas_de_clase/notas_modelacion.pdf).
 
-- Actvididades de aprendizaje activo que usan Notebooks de [Jupyter](http://jupyter.org/).
+* **Actvididades de aprendizaje activo:** en Notebooks de [Jupyter](http://jupyter.org/).
 
-- Códigos de ejemplo.
+* **Códigos de ejemplo.**
 
-### Actividades de aprendizaje activo
+## Contenidos
 
-Las actividades de aprendizaje activa usan Notebooks de Jupyter que permiten tener
+Las actividades de aprendizaje activo usan Notebooks de Jupyter que permiten tener
 en un único documento texto, gráficos y código.
 
 A continuación se presentan las actividades disponibles.
