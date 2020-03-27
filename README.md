@@ -1,6 +1,6 @@
 # Modelación computacional
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AppliedMechanics-EAFIT/modelacion_computacional/e580ec592b6bd6671bfc06344dec9b8b92435f62)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AppliedMechanics-EAFIT/modelacion_computacional/master)
 
 ## Introducción
 Este repositorio contiene recursos de aprendizaje para el curso **Modelación Computacional** dictado a estudiantes de segundo año (4to semestre) del programa de Ingeniería Civil de la Universidad EAFIT. El curso cubre aspectos básicos de uso de herramientas computacionales, algunos métodos numéricos fundamentales y elementos comunes a la simulación numérica de problemas asociados con fenoménos mecánicos (v-gr., mecánica de sólidos, mecánica de los medios continuos, análisis estructural, elementos finitos, etc). El curso utiliza Python como lenguaje de programación así como herramientas de uso libre disponibles en línea. En lo que sigue se presentan instrucciones para descargar o clonar el repositorio. Adicionalmente, usando la opción de binder es posible ejecutar los Notebooks aún sin tener una instalación de Python o Jupyter en el computador de trabajo.
