@@ -5,4 +5,4 @@ cimentación para soportar una estructura aporticada de 7 pisos. El problema se 
 siguiente notebook:
 
 
-1. [Planteamiento del problema.](https://nbviewer.jupyter.org/github/AppliedMechanics-EAFIT/modelacion_computacional/blob/master/proyectos/presa/planteamiento_presa.ipynb)
+1. [Planteamiento del problema.](https://nbviewer.jupyter.org/github/AppliedMechanics-EAFIT/modelacion_computacional/blob/master/proyectos/cimentacion/proyecto_tema_05.ipynb)
